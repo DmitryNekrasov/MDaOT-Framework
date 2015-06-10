@@ -18,3 +18,10 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+LIBS += -L/opt/local/lib \
+        -lopencv_highgui \
+        -lopencv_core \
+        -lopencv_video \
+        -lopencv_imgproc \
+        -lopencv_nonfree
