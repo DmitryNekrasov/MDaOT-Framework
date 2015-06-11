@@ -20,6 +20,7 @@ public:
 
     bool show(string windowName);
     static void destroyWindow(string windowName);
+    cv::Mat getCvMat();
 
     Frame(cv::Mat mat);
     ~Frame();

@@ -19,7 +19,9 @@ SOURCES += main.cpp\
     frame.cpp \
     detector.cpp \
     detectionmethod.cpp \
-    sequentialimages.cpp
+    sequentialimages.cpp \
+    filter.cpp \
+    grayscalefilter.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -27,7 +29,9 @@ HEADERS  += mainwindow.h \
     frame.h \
     detector.h \
     detectionmethod.h \
-    sequentialimages.h
+    sequentialimages.h \
+    filter.h \
+    grayscalefilter.h
 
 FORMS    += mainwindow.ui
 

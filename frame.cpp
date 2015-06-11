@@ -10,6 +10,10 @@ void Frame::destroyWindow(string windowName) {
     cv::destroyWindow(windowName);
 }
 
+cv::Mat Frame::getCvMat() {
+    return mat;
+}
+
 Frame::Frame(cv::Mat mat) {
     this->mat = mat;
 }
