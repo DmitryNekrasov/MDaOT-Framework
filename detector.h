@@ -1,13 +1,21 @@
 #ifndef DETECTOR_H
 #define DETECTOR_H
 #include "video.h"
+#include "detectionmethod.h"
 
 
 class Detector
 {
+protected:
+    DetectionMethod* detectionMethod;
+
 public:
+
+    void setDetectionMethod(DetectionMethod* detectionMethod);
+    void execute(Video video);
+
+    Detector();
     ~Detector();
-    virtual void detect(Video video) = 0;
 };
 
 #endif // DETECTOR_H

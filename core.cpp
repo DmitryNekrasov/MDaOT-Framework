@@ -6,9 +6,15 @@ void Core::start() {
 
     Video video = Video(0);
 
+    Detector detector = Detector();
+    detector.setDetectionMethod(new SequentialImages());
+    detector.execute(video);
+
     while (true) {
 
         bool isContinue = video.nextFrame().show("Motion");
+
+
 
         if (!isContinue)
             break;
