@@ -19,6 +19,7 @@ public:
     Frame nextFrame();
 
     Video(int device);
+    Video(string filePath);
     ~Video();
 };
 

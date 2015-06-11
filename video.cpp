@@ -18,6 +18,10 @@ Video::Video(int device) {
     capture = cv::VideoCapture(device);
 }
 
+Video::Video(string filePath) {
+    capture = cv::VideoCapture(filePath);
+}
+
 Video::~Video() {
 
 }
