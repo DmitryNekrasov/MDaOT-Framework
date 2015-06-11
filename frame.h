@@ -21,6 +21,7 @@ public:
     bool show(string windowName);
     static void destroyWindow(string windowName);
     cv::Mat getCvMat();
+    static Frame difference(Frame frame1, Frame frame2);
 
     Frame(cv::Mat mat);
     ~Frame();
