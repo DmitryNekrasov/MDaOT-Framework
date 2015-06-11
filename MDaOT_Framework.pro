@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    core.cpp
+    core.cpp \
+    video.cpp
 
 HEADERS  += mainwindow.h \
-    core.h
+    core.h \
+    video.h
 
 FORMS    += mainwindow.ui
 
@@ -27,3 +29,5 @@ LIBS += -L/opt/local/lib \
         -lopencv_video \
         -lopencv_imgproc \
         -lopencv_nonfree
+
+INCLUDEPATH += /opt/local/include

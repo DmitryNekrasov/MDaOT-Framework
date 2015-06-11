@@ -3,6 +3,9 @@
 
 void Core::start() {
     qDebug() << "done!";
+
+    Video video = Video(0);
+
 }
 
 Core::Core()
