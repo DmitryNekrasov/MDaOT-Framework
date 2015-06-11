@@ -9,13 +9,11 @@ void Detector::execute(Video video) {
     detectionMethod->detect(video);
 }
 
-Detector::Detector()
-{
+Detector::Detector() {
 
 }
 
-Detector::~Detector()
-{
+Detector::~Detector() {
 
 }
 

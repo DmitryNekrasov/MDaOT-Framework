@@ -1,8 +1,7 @@
 #include "detectionmethod.h"
 
 
-DetectionMethod::~DetectionMethod()
-{
+DetectionMethod::~DetectionMethod() {
 
 }
 

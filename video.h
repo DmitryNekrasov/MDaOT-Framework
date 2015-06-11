@@ -14,6 +14,8 @@ private:
 
 public:
 
+    void setWidth(int width);
+    void setHeight(int height);
     Frame nextFrame();
 
     Video(int device);

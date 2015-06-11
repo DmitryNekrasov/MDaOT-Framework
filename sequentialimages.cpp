@@ -16,13 +16,11 @@ void SequentialImages::detect(Video video) {
     Frame::destroyWindow(mainWindowName);
 }
 
-SequentialImages::SequentialImages()
-{
+SequentialImages::SequentialImages() {
 
 }
 
-SequentialImages::~SequentialImages()
-{
+SequentialImages::~SequentialImages() {
 
 }
 

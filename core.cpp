@@ -6,14 +6,15 @@ Core *Core::instance;
 void Core::start() {
 
     Video video = Video(0);
+    video.setWidth(540);
+    video.setHeight(360);
 
     Detector detector = Detector();
     detector.setDetectionMethod(new SequentialImages());
     detector.execute(video);
 }
 
-Core::Core()
-{
+Core::Core() {
 
 }
 
@@ -24,8 +25,7 @@ Core *Core::getInstance() {
     return instance;
 }
 
-Core::~Core()
-{
+Core::~Core() {
 
 }
 
