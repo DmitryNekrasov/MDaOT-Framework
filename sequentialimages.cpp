@@ -2,7 +2,7 @@
 #include "QDebug"
 
 void SequentialImages::detect(Video video) {
-    qDebug() << "detect!";
+    qDebug() << "Detection Sequential Images method";
 
     string mainWindowName = "Motion";
 

@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    Core core = Core();
-    core.start();
+    Core *core = Core::getInstance();
+    core->start();
 
     return a.exec();
 }

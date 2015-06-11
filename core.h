@@ -7,11 +7,18 @@
 
 class Core
 {
-public:
+private:
 
-    void start();
+    static Core* instance;
 
     Core();
+
+public:
+
+    static Core* getInstance();
+    void start();
+
+
     ~Core();
 };
 

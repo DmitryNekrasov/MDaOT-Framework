@@ -1,8 +1,9 @@
 #include "core.h"
 #include <QDebug>
 
+Core *Core::instance;
+
 void Core::start() {
-    qDebug() << "done!";
 
     Video video = Video(0);
 
@@ -14,6 +15,13 @@ void Core::start() {
 Core::Core()
 {
 
+}
+
+Core *Core::getInstance() {
+    if (instance == NULL) {
+        instance = new Core();
+    }
+    return instance;
 }
 
 Core::~Core()
