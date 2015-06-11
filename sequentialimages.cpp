@@ -39,6 +39,7 @@ void SequentialImages::detect(Video video) {
             break;
     }
 
+
     Frame::destroyWindow(mainWindowName);
     Frame::destroyWindow(grayscaleWindowName);
     Frame::destroyWindow(binaryWindowName);
