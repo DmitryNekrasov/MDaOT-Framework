@@ -16,12 +16,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     core.cpp \
     video.cpp \
-    frame.cpp
+    frame.cpp \
+    detector.cpp \
+    detectionmethod.cpp \
+    sequentialimages.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
     video.h \
-    frame.h
+    frame.h \
+    detector.h \
+    detectionmethod.h \
+    sequentialimages.h
 
 FORMS    += mainwindow.ui
 

@@ -7,7 +7,10 @@ void Core::start() {
     Video video = Video(0);
 
     while (true) {
-        if (!video.nextFrame().show("Motion"))
+
+        bool isContinue = video.nextFrame().show("Motion");
+
+        if (!isContinue)
             break;
     }
 
