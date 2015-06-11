@@ -4,6 +4,8 @@
 
 class DetectionMethod
 {
+private:
+
 public:
     ~DetectionMethod();
     virtual void detect(Video video) = 0;
