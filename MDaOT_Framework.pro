@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     sequentialimages.cpp \
     filter.cpp \
     grayscalefilter.cpp \
-    binaryfilter.cpp
+    binaryfilter.cpp \
+    blurfilter.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     sequentialimages.h \
     filter.h \
     grayscalefilter.h \
-    binaryfilter.h
+    binaryfilter.h \
+    blurfilter.h
 
 FORMS    += mainwindow.ui
 

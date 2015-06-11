@@ -4,6 +4,7 @@
 #include "filter.h"
 #include "grayscalefilter.h"
 #include "binaryfilter.h"
+#include "blurfilter.h"
 
 
 class SequentialImages: public DetectionMethod

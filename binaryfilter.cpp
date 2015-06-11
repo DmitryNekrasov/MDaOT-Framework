@@ -14,4 +14,3 @@ BinaryFilter::BinaryFilter(int threshold) {
 BinaryFilter::~BinaryFilter() {
 
 }
-
