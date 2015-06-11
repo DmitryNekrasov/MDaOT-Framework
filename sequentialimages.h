@@ -3,6 +3,7 @@
 #include "detectionmethod.h"
 #include "filter.h"
 #include "grayscalefilter.h"
+#include "binaryfilter.h"
 
 
 class SequentialImages: public DetectionMethod
