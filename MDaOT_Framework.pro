@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     core.cpp \
-    video.cpp
+    video.cpp \
+    frame.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
-    video.h
+    video.h \
+    frame.h
 
 FORMS    += mainwindow.ui
 
