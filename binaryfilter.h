@@ -12,6 +12,9 @@ public:
 
     virtual Frame apply(Frame originalFrame);
 
+    int getThreshold();
+    void setThreshold(int threshold);
+
     BinaryFilter(int threshold);
     ~BinaryFilter();
 };

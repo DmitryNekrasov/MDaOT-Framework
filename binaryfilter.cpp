@@ -7,6 +7,14 @@ Frame BinaryFilter::apply(Frame originalFrame) {
     return Frame(thresholdMat);
 }
 
+int BinaryFilter::getThreshold() {
+    return threshold;
+}
+
+void BinaryFilter::setThreshold(int threshold) {
+    this->threshold = threshold;
+}
+
 BinaryFilter::BinaryFilter(int threshold) {
     this->threshold = threshold;
 }

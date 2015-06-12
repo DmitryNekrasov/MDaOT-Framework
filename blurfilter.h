@@ -13,6 +13,12 @@ public:
 
     virtual Frame apply(Frame originalFrame);
 
+    int getWidthBlur();
+    void setWidthBlur(int widthBlur);
+
+    int getHeightBlur();
+    void setHeightBlur(int heightBlur);
+
     BlurFilter(int widthBlur, int heightBlur);
     ~BlurFilter();
 };
