@@ -8,13 +8,11 @@ Frame GrayscaleFilter::apply(Frame originalFrame) {
     return Frame(grayMat);
 }
 
-GrayscaleFilter::GrayscaleFilter()
-{
+GrayscaleFilter::GrayscaleFilter() {
 
 }
 
-GrayscaleFilter::~GrayscaleFilter()
-{
+GrayscaleFilter::~GrayscaleFilter() {
 
 }
 

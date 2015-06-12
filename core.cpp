@@ -5,7 +5,7 @@ Core *Core::instance;
 
 void Core::start() {
 
-    Video video = Video(0);
+    Video video = Video("/Users/ScanNorOne/Downloads/2.mov");
     video.setWidth(540);
     video.setHeight(360);
 

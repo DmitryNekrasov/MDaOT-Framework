@@ -16,7 +16,7 @@ void SequentialImages::detect(Video video) {
 
     Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, binaryFrame, blurFrame, blurBinaryFrame;
 
-    while (true) {
+    while (video.hasNext()) {
         originalFrame1 = video.nextFrame();
         bool isContinue = originalFrame1.show(mainWindowName);
         grayFrame1 = grayscaleFilter->apply(originalFrame1);

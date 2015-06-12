@@ -11,11 +11,15 @@ class Video
 {
 private:
     cv::VideoCapture capture;
+    bool isFileOpen;
 
 public:
 
     void setWidth(int width);
     void setHeight(int height);
+
+    bool hasNext();
+
     Frame nextFrame();
 
     Video(int device);

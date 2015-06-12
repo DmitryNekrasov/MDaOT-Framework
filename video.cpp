@@ -14,15 +14,22 @@ void Video::setHeight(int height) {
     capture.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 }
 
+bool Video::hasNext() {
+    if (isFileOpen)
+        return capture.get(CV_CAP_PROP_POS_FRAMES) < capture.get(CV_CAP_PROP_FRAME_COUNT) - 1;
+    return true;
+}
+
 Video::Video(int device) {
     capture = cv::VideoCapture(device);
+    isFileOpen = false;
 }
 
 Video::Video(string filePath) {
     capture = cv::VideoCapture(filePath);
+    isFileOpen = true;
 }
 
 Video::~Video() {
 
 }
-
