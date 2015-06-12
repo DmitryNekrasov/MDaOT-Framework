@@ -5,16 +5,16 @@ void SequentialImages::detect(Video video) {
     qDebug() << "Detection Sequential Images method";
 
     string mainWindowName = "Motion";
-    string grayscaleWindowName = "Grayscale";
-    string binaryWindowName = "Binary";
-    string blurWindowName = "Blur";
-    string blurBinaryWindowName = "Blur binary";
 
     Filter *grayscaleFilter = new GrayscaleFilter();
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(7, 7);
 
-    Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, binaryFrame, blurFrame, blurBinaryFrame;
+    filterChain.add(binaryFilter);
+    filterChain.add(blurFilter);
+    filterChain.add(binaryFilter);
+
+    Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, blurBinaryFrame;
 
     while (video.hasNext()) {
         originalFrame1 = video.nextFrame();
@@ -26,14 +26,7 @@ void SequentialImages::detect(Video video) {
 
         diffFrame = Frame::difference(grayFrame1, grayFrame2);
 
-        binaryFrame = binaryFilter->apply(diffFrame);
-//        binaryFrame.show(binaryWindowName);
-
-        blurFrame = blurFilter->apply(binaryFrame);
-//        blurFrame.show(blurWindowName);
-
-        blurBinaryFrame = binaryFilter->apply(blurFrame);
-//        blurBinaryFrame.show(blurBinaryWindowName);
+        blurBinaryFrame = filterChain.apply(diffFrame);
 
         searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
 
@@ -43,10 +36,6 @@ void SequentialImages::detect(Video video) {
 
 
     Frame::destroyWindow(mainWindowName);
-    Frame::destroyWindow(grayscaleWindowName);
-    Frame::destroyWindow(binaryWindowName);
-    Frame::destroyWindow(blurWindowName);
-    Frame::destroyWindow(blurBinaryWindowName);
 }
 
 
