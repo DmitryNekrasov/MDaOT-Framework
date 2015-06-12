@@ -9,8 +9,6 @@
 
 using namespace std;
 
-
-
 class Frame
 {
 private:
@@ -24,9 +22,8 @@ public:
     static Frame difference(Frame frame1, Frame frame2);
 
     Frame(cv::Mat mat);
+    Frame();
     ~Frame();
 };
-
-
 
 #endif // FRAME_H

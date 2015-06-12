@@ -18,7 +18,6 @@ public:
     static Core* getInstance();
     void start();
 
-
     ~Core();
 };
 

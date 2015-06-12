@@ -14,23 +14,25 @@ void SequentialImages::detect(Video video) {
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(7, 7);
 
+    Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, binaryFrame, blurFrame, blurBinaryFrame;
+
     while (true) {
-        Frame originalFrame1 = video.nextFrame();
+        originalFrame1 = video.nextFrame();
         bool isContinue = originalFrame1.show(mainWindowName);
-        Frame grayFrame1 = grayscaleFilter->apply(originalFrame1);
+        grayFrame1 = grayscaleFilter->apply(originalFrame1);
 
-        Frame originalFrame2 = video.nextFrame();
-        Frame grayFrame2 = grayscaleFilter->apply(originalFrame2);
+        originalFrame2 = video.nextFrame();
+        grayFrame2 = grayscaleFilter->apply(originalFrame2);
 
-        Frame diffFrame = Frame::difference(grayFrame1, grayFrame2);
+        diffFrame = Frame::difference(grayFrame1, grayFrame2);
 
-        Frame binaryFrame = binaryFilter->apply(diffFrame);
+        binaryFrame = binaryFilter->apply(diffFrame);
 //        binaryFrame.show(binaryWindowName);
 
-        Frame blurFrame = blurFilter->apply(binaryFrame);
+        blurFrame = blurFilter->apply(binaryFrame);
 //        blurFrame.show(blurWindowName);
 
-        Frame blurBinaryFrame = binaryFilter->apply(blurFrame);
+        blurBinaryFrame = binaryFilter->apply(blurFrame);
 //        blurBinaryFrame.show(blurBinaryWindowName);
 
         searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());

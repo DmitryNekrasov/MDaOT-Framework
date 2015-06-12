@@ -26,6 +26,10 @@ Frame::Frame(cv::Mat mat) {
     this->mat = mat;
 }
 
+Frame::Frame() {
+
+}
+
 Frame::~Frame() {
 
 }
