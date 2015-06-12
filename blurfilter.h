@@ -2,6 +2,7 @@
 #define BLURFILTER_H
 #include "filter.h"
 
+
 class BlurFilter: public Filter
 {
 private:

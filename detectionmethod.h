@@ -3,6 +3,7 @@
 #include "video.h"
 #include "filterchain.h"
 
+
 class DetectionMethod
 {
 protected:

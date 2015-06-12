@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     grayscalefilter.cpp \
     binaryfilter.cpp \
     blurfilter.cpp \
-    filterchain.cpp
+    filterchain.cpp \
+    medianfilter.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     grayscalefilter.h \
     binaryfilter.h \
     blurfilter.h \
-    filterchain.h
+    filterchain.h \
+    medianfilter.h
 
 FORMS    += mainwindow.ui
 

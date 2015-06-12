@@ -2,6 +2,7 @@
 #define BINARYFILTER_H
 #include "filter.h"
 
+
 class BinaryFilter: public Filter
 {
 private:

@@ -2,6 +2,7 @@
 #define FILTER_H
 #include "frame.h"
 
+
 class Filter
 {
 public:

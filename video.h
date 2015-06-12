@@ -7,6 +7,7 @@
 #include <opencv2/opencv.hpp>
 #include "frame.h"
 
+
 class Video
 {
 private:

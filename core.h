@@ -5,6 +5,7 @@
 #include "detectionmethod.h"
 #include "sequentialimages.h"
 
+
 class Core
 {
 private:
