@@ -5,7 +5,7 @@ Core *Core::instance;
 
 void Core::start() {
 
-    Video video = Video("/Users/ScanNorOne/Downloads/2.mov");
+    Video video = Video("/Users/ScanNorOne/Downloads/3.mov");
 
     Detector detector = Detector();
     detector.setDetectionMethod(new SequentialImages());

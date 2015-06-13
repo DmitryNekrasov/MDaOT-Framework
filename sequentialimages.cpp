@@ -23,6 +23,9 @@ void SequentialImages::detect(Video video) {
 
         grayFrame1 = grayscaleFilter->apply(originalFrame1);
 
+        if (!video.hasNext())
+            break;
+
         originalFrame2 = video.nextFrame();
         grayFrame2 = grayscaleFilter->apply(originalFrame2);
 
