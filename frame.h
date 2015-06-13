@@ -6,6 +6,7 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/opencv.hpp>
 #include <string>
+#include "rectangle.h"
 
 
 using namespace std;
@@ -21,6 +22,8 @@ public:
     static void destroyWindow(string windowName);
     cv::Mat getCvMat();
     static Frame difference(Frame frame1, Frame frame2);
+    static vector<Rectangle> searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed);
+    void drawRectangle(Rectangle rectangle);
 
     Frame(cv::Mat mat);
     Frame();

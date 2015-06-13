@@ -1,4 +1,5 @@
 #include "frame.h"
+#include "QDebug"
 
 bool Frame::show(string windowFrame) {
     cv::imshow(windowFrame, mat);
@@ -20,6 +21,41 @@ Frame Frame::difference(Frame frame1, Frame frame2) {
     cv::Mat resultMat;
     cv::absdiff(mat1, mat2, resultMat);
     return Frame(resultMat);
+}
+
+vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed) {
+    bool objectDetected = false;
+    cv::Mat temp;
+    thresholdImage.copyTo(temp);
+
+    vector< vector<cv::Point> > contours;
+    vector<cv::Vec4i> hierarchy;
+
+    cv::findContours(temp, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+
+    if (contours.size() > 0) {
+        objectDetected = true;
+    } else {
+        objectDetected = false;
+    }
+
+    cv::Rect objectBoundingRectangle = cv::Rect(0, 0, 0, 0);
+
+    if (objectDetected) {
+        vector< vector<cv::Point> > largestContourVec;
+        largestContourVec.push_back(contours.at(contours.size()-1));
+
+        objectBoundingRectangle = cv::boundingRect(largestContourVec.at(0));
+    }
+
+    vector<Rectangle> rectangles;
+    rectangles.push_back(Rectangle(objectBoundingRectangle));
+
+    return rectangles;
+}
+
+void Frame::drawRectangle(Rectangle rectangle) {
+    cv::rectangle(mat, rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
 }
 
 Frame::Frame(cv::Mat mat) {

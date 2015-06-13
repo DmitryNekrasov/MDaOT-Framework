@@ -13,7 +13,6 @@ class SequentialImages: public DetectionMethod
 public:
 
     virtual void detect(Video video);
-    void searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed);
 
     SequentialImages();
     ~SequentialImages();

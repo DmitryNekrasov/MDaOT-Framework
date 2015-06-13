@@ -12,7 +12,11 @@ class Rectangle
     cv::Rect myRect;
 
 public:
+
+    cv::Rect getCvRect();
+
     Rectangle(int x, int y, int width, int height);
+    Rectangle(cv::Rect cvRect);
     ~Rectangle();
 };
 
