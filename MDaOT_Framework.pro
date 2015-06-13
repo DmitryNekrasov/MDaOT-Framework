@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     binaryfilter.cpp \
     blurfilter.cpp \
     filterchain.cpp \
-    medianfilter.cpp
+    medianfilter.cpp \
+    backgroundsubtraction.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     binaryfilter.h \
     blurfilter.h \
     filterchain.h \
-    medianfilter.h
+    medianfilter.h \
+    backgroundsubtraction.h
 
 FORMS    += mainwindow.ui
 

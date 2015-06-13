@@ -1,5 +1,5 @@
 #include "sequentialimages.h"
-#include "QDebug"
+
 
 void SequentialImages::detect(Video video) {
     qDebug() << "Detection Sequential Images method";
@@ -68,7 +68,8 @@ void SequentialImages::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraF
         objectBoundingRectangle = cv::boundingRect(largestContourVec.at(0));
         int x = objectBoundingRectangle.x + objectBoundingRectangle.width / 2;
         int y = objectBoundingRectangle.y + objectBoundingRectangle.height / 2;
-        cv::circle(cameraFeed, cv::Point(x,y), 20, cv::Scalar(0, 255, 0), 3);
+//        cv::circle(cameraFeed, cv::Point(x,y), 20, cv::Scalar(0, 255, 0), 3);
+        cv::rectangle(cameraFeed, objectBoundingRectangle, cv::Scalar(255, 0, 0), 3);
 
 //        points.push_back(cv::Point(x, y));
 

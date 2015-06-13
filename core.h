@@ -4,6 +4,7 @@
 #include "detector.h"
 #include "detectionmethod.h"
 #include "sequentialimages.h"
+#include "backgroundsubtraction.h"
 
 
 class Core

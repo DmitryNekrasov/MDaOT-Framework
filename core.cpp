@@ -6,11 +6,10 @@ Core *Core::instance;
 void Core::start() {
 
     Video video = Video("/Users/ScanNorOne/Downloads/2.mov");
-    video.setWidth(540);
-    video.setHeight(360);
 
     Detector detector = Detector();
-    detector.setDetectionMethod(new SequentialImages());
+//    detector.setDetectionMethod(new SequentialImages());
+    detector.setDetectionMethod(new BackgroundSubtraction());
     detector.execute(video);
 }
 
@@ -28,4 +27,3 @@ Core *Core::getInstance() {
 Core::~Core() {
 
 }
-
