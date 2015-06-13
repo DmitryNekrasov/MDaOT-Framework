@@ -33,13 +33,11 @@ void BackgroundSubtraction::detect(Video video) {
 
 }
 
-BackgroundSubtraction::BackgroundSubtraction()
-{
+BackgroundSubtraction::BackgroundSubtraction() {
 
 }
 
-BackgroundSubtraction::~BackgroundSubtraction()
-{
+BackgroundSubtraction::~BackgroundSubtraction() {
 
 }
 

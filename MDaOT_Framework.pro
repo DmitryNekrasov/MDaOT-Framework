@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     blurfilter.cpp \
     filterchain.cpp \
     medianfilter.cpp \
-    backgroundsubtraction.cpp
+    backgroundsubtraction.cpp \
+    rectangle.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     blurfilter.h \
     filterchain.h \
     medianfilter.h \
-    backgroundsubtraction.h
+    backgroundsubtraction.h \
+    rectangle.h
 
 FORMS    += mainwindow.ui
 

@@ -56,14 +56,11 @@ void SequentialImages::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraF
         objectDetected = true;
     } else {
         objectDetected = false;
-//        points.clear();
     }
 
     if (objectDetected) {
         vector< vector<cv::Point> > largestContourVec;
         largestContourVec.push_back(contours.at(contours.size()-1));
-
-//        qDebug() << largestContourVec.size();
 
         objectBoundingRectangle = cv::boundingRect(largestContourVec.at(0));
         int x = objectBoundingRectangle.x + objectBoundingRectangle.width / 2;
