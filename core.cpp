@@ -8,8 +8,8 @@ void Core::start() {
     Video video = Video("/Users/ScanNorOne/Downloads/3.mov");
 
     Detector detector = Detector();
-    detector.setDetectionMethod(new SequentialImages());
-//    detector.setDetectionMethod(new BackgroundSubtraction());
+//    detector.setDetectionMethod(new SequentialImages());
+    detector.setDetectionMethod(new BackgroundSubtraction());
     detector.execute(video);
 }
 

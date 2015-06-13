@@ -14,9 +14,11 @@ void BackgroundSubtraction::detect(Video video) {
     cv::Mat fgMaskMOG2;
 
     Filter *blur = new BlurFilter(15, 15);
-    Filter *binary = new BinaryFilter(10);
+    Filter *binary = new BinaryFilter(1);
     Filter *median = new MedianFilter(5);
 
+    filterChain.add(blur);
+    filterChain.add(binary);
     filterChain.add(blur);
     filterChain.add(binary);
 
@@ -30,11 +32,8 @@ void BackgroundSubtraction::detect(Video video) {
         pMOG->operator()(cvFrame, fgMaskMOG);
         pMOG2->operator()(cvFrame, fgMaskMOG2);
 
-//        imshow("FG Mask MOG", fgMaskMOG);
-//        imshow("FG Mask MOG 2", fgMaskMOG2);
-
         outFrame = filterChain.apply(Frame(fgMaskMOG));
-        outFrame.show("outFrame");
+//        outFrame.show("outFrame");
 
         rectangles = Frame::searchForMovement(outFrame.getCvMat(), cvFrame);
 
