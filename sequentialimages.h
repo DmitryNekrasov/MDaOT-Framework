@@ -5,9 +5,13 @@
 
 class SequentialImages: public DetectionMethod
 {
+
+
+
 public:
 
     virtual void detect(Video video);
+
 
     SequentialImages();
     SequentialImages(MovenmentHandler *handler);

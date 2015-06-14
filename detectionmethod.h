@@ -19,12 +19,17 @@
 class DetectionMethod
 {
 protected:
+
     MovenmentHandler *movenmentHandler;
     FilterChain filterChain;
+    vector<Rectangle> moveObjectRectangles;
+    Rectangle *region;
+
 public:
     ~DetectionMethod();
     virtual void detect(Video video) = 0;
     void performOnMove(Frame frame);
+    void setRegion(Rectangle *region);
 };
 
 #endif // DETECTIONMETHOD_H

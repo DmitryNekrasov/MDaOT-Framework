@@ -46,11 +46,15 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat camer
 
     if (objectDetected) {
         vector< vector<cv::Point> > largestContourVec;
-        largestContourVec.push_back(contours.at(0));
 
-        objectBoundingRectangle = cv::boundingRect(largestContourVec.at(0));
+        for (int i = 0; i < contours.size(); i++) {
+            largestContourVec.push_back(contours.at(i));
+        }
 
-        rectangles.push_back(Rectangle(objectBoundingRectangle));
+        for (int i = 0; i < contours.size(); i++) {
+            objectBoundingRectangle = cv::boundingRect(largestContourVec.at(i));
+            rectangles.push_back(Rectangle(objectBoundingRectangle));
+        }
     }
 
     return rectangles;

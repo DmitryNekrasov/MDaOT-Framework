@@ -6,46 +6,56 @@ void SequentialImages::detect(Video video) {
 
     string mainWindowName = "Motion";
 
-    Filter *grayscaleFilter = new GrayscaleFilter(new OutBinaryFH());
-    grayscaleFilter->setFilterHandler(new OutGrayscaleFH());
+    Filter *grayscaleFilter = new GrayscaleFilter();
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(10, 10);
-    Filter *bin = new BinaryFilter(1);
+    Filter *bin = new BinaryFilter(1, new OutBinaryFH());
 
     filterChain.add(binaryFilter);
     filterChain.add(blurFilter);
     filterChain.add(binaryFilter);
+    filterChain.add(blurFilter);
     filterChain.add(bin);
 
     Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, blurBinaryFrame;
 
-    vector<Rectangle> rectangles;
-
     while (video.hasNext()) {
         originalFrame1 = video.nextFrame();
-
-        grayFrame1 = grayscaleFilter->apply(originalFrame1);
 
         if (!video.hasNext())
             break;
 
         originalFrame2 = video.nextFrame();
+
+        if (region != NULL) {
+            originalFrame1 = Frame(originalFrame1.getCvMat()(region->getCvRect()));
+            originalFrame2 = Frame(originalFrame2.getCvMat()(region->getCvRect()));
+        }
+
+        grayFrame1 = grayscaleFilter->apply(originalFrame1);
+
         grayFrame2 = grayscaleFilter->apply(originalFrame2);
 
         diffFrame = Frame::difference(grayFrame1, grayFrame2);
 
         blurBinaryFrame = filterChain.apply(diffFrame);
 
-        rectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
+        moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
 
         if (movenmentHandler != NULL) {
-            if (!rectangles.empty()) {
-                performOnMove(Frame(originalFrame1.getCvMat()(rectangles.at(0).getCvRect())));
+            if (!moveObjectRectangles.empty()) {
+                performOnMove(Frame(originalFrame1.getCvMat()(moveObjectRectangles.at(0).getCvRect())));
             }
         }
 
-        if (!rectangles.empty())
-            originalFrame1.drawRectangle(rectangles.at(0));
+        if (!moveObjectRectangles.empty())
+            for (int i = 0; i < moveObjectRectangles.size(); i++) {
+                int area = moveObjectRectangles.at(i).getArea();
+                if (area > 10000) {
+                    originalFrame1.drawRectangle(moveObjectRectangles.at(i));
+//                    qDebug() << area;
+                }
+            }
 
         bool isContinue = originalFrame1.show(mainWindowName);
         if (!isContinue)
@@ -58,10 +68,12 @@ void SequentialImages::detect(Video video) {
 
 SequentialImages::SequentialImages() {
     movenmentHandler = NULL;
+    region = NULL;
 }
 
 SequentialImages::SequentialImages(MovenmentHandler *handler) {
     movenmentHandler = handler;
+    region = NULL;
 }
 
 SequentialImages::~SequentialImages() {
