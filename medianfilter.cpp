@@ -4,7 +4,13 @@ Frame MedianFilter::apply(Frame originalFrame) {
     cv::Mat medianMat;
     cv::Mat originalMat = originalFrame.getCvMat();
     cv::medianBlur(originalMat, medianMat, size);
-    return Frame(medianMat);
+    Frame result = Frame(medianMat);
+
+    if (filterHandler != NULL) {
+        performApplyFilter(result);
+    }
+
+    return result;
 }
 
 int MedianFilter::getSize() {
@@ -17,6 +23,12 @@ void MedianFilter::setSize(int size) {
 
 MedianFilter::MedianFilter(int size) {
     this->size = size;
+    filterHandler = NULL;
+}
+
+MedianFilter::MedianFilter(int size, FilterHandler *handler) {
+    this->size = size;
+    filterHandler = handler;
 }
 
 MedianFilter::~MedianFilter() {

@@ -1,6 +1,7 @@
 #ifndef BLURFILTER_H
 #define BLURFILTER_H
 #include "filter.h"
+#include "filterhandler.h"
 
 
 class BlurFilter: public Filter
@@ -21,6 +22,7 @@ public:
     void setHeightBlur(int heightBlur);
 
     BlurFilter(int widthBlur, int heightBlur);
+    BlurFilter(int widthBlur, int heightBlur, FilterHandler *handler);
     ~BlurFilter();
 };
 

@@ -4,7 +4,13 @@ Frame BlurFilter::apply(Frame originalFrame) {
     cv::Mat blurMat;
     cv::Mat originalMat = originalFrame.getCvMat();
     cv::blur(originalMat, blurMat, cv::Size(widthBlur, heightBlur));
-    return Frame(blurMat);
+    Frame result = Frame(blurMat);
+
+    if (filterHandler != NULL) {
+        performApplyFilter(result);
+    }
+
+    return result;
 }
 
 int BlurFilter::getWidthBlur() {
@@ -26,6 +32,13 @@ void BlurFilter::setHeightBlur(int heightBlur) {
 BlurFilter::BlurFilter(int widthBlur, int heightBlur) {
     this->widthBlur = widthBlur;
     this->heightBlur = heightBlur;
+    filterHandler = NULL;
+}
+
+BlurFilter::BlurFilter(int widthBlur, int heightBlur, FilterHandler *handler) {
+    this->widthBlur = widthBlur;
+    this->heightBlur = heightBlur;
+    filterHandler = handler;
 }
 
 BlurFilter::~BlurFilter() {

@@ -2,7 +2,8 @@
 #include "QDebug"
 
 void MyFilterHandler::onApplyFilter(Frame frame) {
-    frame.show("Filter handler work");
+    // здесь нужно писать код обработки отфильтрованного фрейма
+    frame.show("Filter");
 }
 
 MyFilterHandler::MyFilterHandler()

@@ -1,6 +1,7 @@
 #ifndef MEDIANFILTER_H
 #define MEDIANFILTER_H
 #include "filter.h"
+#include "filterhandler.h"
 
 
 class MedianFilter: public Filter
@@ -17,6 +18,7 @@ public:
     void setSize(int size);
 
     MedianFilter(int size);
+    MedianFilter(int size, FilterHandler *handler);
     ~MedianFilter();
 };
 
