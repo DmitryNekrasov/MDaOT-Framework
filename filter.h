@@ -3,6 +3,10 @@
 #include "frame.h"
 #include "filterhandler.h"
 #include "myfilterhandler.h"
+#include "outgrayscalefh.h"
+#include "outmedianfh.h"
+#include "outblurfh.h"
+#include "outbinaryfh.h"
 
 
 class Filter

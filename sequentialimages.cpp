@@ -6,7 +6,7 @@ void SequentialImages::detect(Video video) {
 
     string mainWindowName = "Motion";
 
-    Filter *grayscaleFilter = new GrayscaleFilter(new MyFilterHandler());
+    Filter *grayscaleFilter = new GrayscaleFilter(new OutBinaryFH());
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(10, 10);
     Filter *bin = new BinaryFilter(1);

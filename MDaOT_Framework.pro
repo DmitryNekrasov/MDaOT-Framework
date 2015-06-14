@@ -31,7 +31,11 @@ SOURCES += main.cpp\
     movenmenthandler.cpp \
     mymovenmenthandler.cpp \
     filterhandler.cpp \
-    myfilterhandler.cpp
+    myfilterhandler.cpp \
+    outgrayscalefh.cpp \
+    outmedianfh.cpp \
+    outblurfh.cpp \
+    outbinaryfh.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -51,7 +55,11 @@ HEADERS  += mainwindow.h \
     movenmenthandler.h \
     mymovenmenthandler.h \
     filterhandler.h \
-    myfilterhandler.h
+    myfilterhandler.h \
+    outgrayscalefh.h \
+    outmedianfh.h \
+    outblurfh.h \
+    outbinaryfh.h
 
 FORMS    += mainwindow.ui
 
