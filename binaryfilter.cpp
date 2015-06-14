@@ -1,10 +1,17 @@
 #include "binaryfilter.h"
+#include "QDebug"
 
 Frame BinaryFilter::apply(Frame originalFrame) {
     cv::Mat thresholdMat;
     cv::Mat originalMat = originalFrame.getCvMat();
     cv::threshold(originalMat, thresholdMat, threshold, 255, cv::THRESH_BINARY);
-    return Frame(thresholdMat);
+    Frame result = Frame(thresholdMat);
+
+    if (filterHandler != NULL) {
+        performApplyFilter(result);
+    }
+
+    return result;
 }
 
 int BinaryFilter::getThreshold() {
@@ -15,8 +22,14 @@ void BinaryFilter::setThreshold(int threshold) {
     this->threshold = threshold;
 }
 
+BinaryFilter::BinaryFilter(int threshold, FilterHandler *handler) {
+    this->threshold = threshold;
+    filterHandler = handler;
+}
+
 BinaryFilter::BinaryFilter(int threshold) {
     this->threshold = threshold;
+    filterHandler = NULL;
 }
 
 BinaryFilter::~BinaryFilter() {

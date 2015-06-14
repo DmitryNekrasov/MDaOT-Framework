@@ -9,8 +9,8 @@ void Core::start() {
 //    Video video = Video(0);
 
     Detector detector = Detector();
-//    detector.setDetectionMethod(new SequentialImages(new MyMovenmentHandler()));
-    detector.setDetectionMethod(new BackgroundSubtraction(new MyMovenmentHandler()));
+    detector.setDetectionMethod(new SequentialImages(new MyMovenmentHandler()));
+//    detector.setDetectionMethod(new BackgroundSubtraction(new MyMovenmentHandler()));
     detector.execute(video);
 }
 

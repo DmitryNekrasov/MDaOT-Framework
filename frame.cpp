@@ -63,7 +63,7 @@ void Frame::drawRectangle(Rectangle rectangle) {
 QImage Frame::toQImage() {
     cv::Mat temp(mat.cols, mat.rows, mat.type());
     cvtColor(mat, temp, CV_BGR2RGB);
-    QImage dest= QImage((uchar*) temp.data, temp.cols, temp.rows, temp.step, QImage::Format_ARGB32);
+    QImage dest = QImage((uchar*) temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGBA8888);
     return dest;
 }
 
