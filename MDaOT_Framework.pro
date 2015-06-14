@@ -35,7 +35,9 @@ SOURCES += main.cpp\
     outgrayscalefh.cpp \
     outmedianfh.cpp \
     outblurfh.cpp \
-    outbinaryfh.cpp
+    outbinaryfh.cpp \
+    recognitionmethod.cpp \
+    recognizer.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -59,7 +61,9 @@ HEADERS  += mainwindow.h \
     outgrayscalefh.h \
     outmedianfh.h \
     outblurfh.h \
-    outbinaryfh.h
+    outbinaryfh.h \
+    recognitionmethod.h \
+    recognizer.h
 
 FORMS    += mainwindow.ui
 

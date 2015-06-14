@@ -10,8 +10,10 @@ void Core::start() {
 
     Detector detector = Detector();
     DetectionMethod *si = new SequentialImages(new MyMovenmentHandler());
-    si->setRegion(new Rectangle(0, 0, 500, 500));
+//    si->setRegion(new Rectangle(0, 0, 500, 500));
     detector.setDetectionMethod(si);
+
+
 //    detector.setDetectionMethod(new BackgroundSubtraction(new MyMovenmentHandler()));
     detector.execute(video);
 }
