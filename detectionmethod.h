@@ -13,15 +13,18 @@
 #include "binaryfilter.h"
 #include "blurfilter.h"
 #include "medianfilter.h"
+#include "movenmenthandler.h"
 
 
 class DetectionMethod
 {
 protected:
+    MovenmentHandler *movenmentHandler;
     FilterChain filterChain;
 public:
     ~DetectionMethod();
     virtual void detect(Video video) = 0;
+    void performOnMove(Frame frame);
 };
 
 #endif // DETECTIONMETHOD_H

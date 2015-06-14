@@ -35,7 +35,14 @@ void SequentialImages::detect(Video video) {
 
         rectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
 
-        originalFrame1.drawRectangle(rectangles.at(0));
+        if (movenmentHandler != NULL) {
+            if (!rectangles.empty()) {
+                performOnMove(originalFrame1);
+            }
+        }
+
+        if (!rectangles.empty())
+            originalFrame1.drawRectangle(rectangles.at(0));
 
         bool isContinue = originalFrame1.show(mainWindowName);
         if (!isContinue)
@@ -47,7 +54,11 @@ void SequentialImages::detect(Video video) {
 }
 
 SequentialImages::SequentialImages() {
+    movenmentHandler = NULL;
+}
 
+SequentialImages::SequentialImages(MovenmentHandler *handler) {
+    movenmentHandler = handler;
 }
 
 SequentialImages::~SequentialImages() {

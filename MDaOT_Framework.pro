@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     filterchain.cpp \
     medianfilter.cpp \
     backgroundsubtraction.cpp \
-    rectangle.cpp
+    rectangle.cpp \
+    movenmenthandler.cpp \
+    mymovenmenthandler.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -43,7 +45,9 @@ HEADERS  += mainwindow.h \
     filterchain.h \
     medianfilter.h \
     backgroundsubtraction.h \
-    rectangle.h
+    rectangle.h \
+    movenmenthandler.h \
+    mymovenmenthandler.h
 
 FORMS    += mainwindow.ui
 

@@ -6,10 +6,11 @@ Core *Core::instance;
 void Core::start() {
 
     Video video = Video("/Users/ScanNorOne/Downloads/3.mov");
+//    Video video = Video(0);
 
     Detector detector = Detector();
-//    detector.setDetectionMethod(new SequentialImages());
-    detector.setDetectionMethod(new BackgroundSubtraction());
+    detector.setDetectionMethod(new SequentialImages(new MyMovenmentHandler()));
+//    detector.setDetectionMethod(new BackgroundSubtraction());
     detector.execute(video);
 }
 

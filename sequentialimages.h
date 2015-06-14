@@ -10,6 +10,7 @@ public:
     virtual void detect(Video video);
 
     SequentialImages();
+    SequentialImages(MovenmentHandler *handler);
     ~SequentialImages();
 };
 

@@ -5,6 +5,8 @@
 #include "detectionmethod.h"
 #include "sequentialimages.h"
 #include "backgroundsubtraction.h"
+#include "movenmenthandler.h"
+#include "mymovenmenthandler.h"
 
 
 class Core
