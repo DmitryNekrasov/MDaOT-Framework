@@ -10,6 +10,7 @@ public:
     virtual void detect(Video video);
 
     BackgroundSubtraction();
+    BackgroundSubtraction(MovenmentHandler *handler);
     ~BackgroundSubtraction();
 };
 

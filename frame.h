@@ -7,6 +7,7 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 #include "rectangle.h"
+#include <QApplication>
 
 
 using namespace std;
@@ -24,6 +25,7 @@ public:
     static Frame difference(Frame frame1, Frame frame2);
     static vector<Rectangle> searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed);
     void drawRectangle(Rectangle rectangle);
+    QImage toQImage();
 
     Frame(cv::Mat mat);
     Frame();

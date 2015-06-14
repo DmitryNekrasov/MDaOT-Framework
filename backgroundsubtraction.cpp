@@ -37,7 +37,14 @@ void BackgroundSubtraction::detect(Video video) {
 
         rectangles = Frame::searchForMovement(outFrame.getCvMat(), cvFrame);
 
-        frame.drawRectangle(rectangles.at(0));
+        if (movenmentHandler != NULL) {
+            if (!rectangles.empty()) {
+                performOnMove(Frame(cvFrame(rectangles.at(0).getCvRect())));
+            }
+        }
+
+        if (!rectangles.empty())
+            frame.drawRectangle(rectangles.at(0));
 
         bool isContinue = frame.show("Motion");
         if (!isContinue)
@@ -49,7 +56,11 @@ void BackgroundSubtraction::detect(Video video) {
 }
 
 BackgroundSubtraction::BackgroundSubtraction() {
+    movenmentHandler = NULL;
+}
 
+BackgroundSubtraction::BackgroundSubtraction(MovenmentHandler *handler) {
+    movenmentHandler = handler;
 }
 
 BackgroundSubtraction::~BackgroundSubtraction() {

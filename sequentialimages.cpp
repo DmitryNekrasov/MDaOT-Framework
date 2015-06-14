@@ -37,7 +37,7 @@ void SequentialImages::detect(Video video) {
 
         if (movenmentHandler != NULL) {
             if (!rectangles.empty()) {
-                performOnMove(originalFrame1);
+                performOnMove(Frame(originalFrame1.getCvMat()(rectangles.at(0).getCvRect())));
             }
         }
 

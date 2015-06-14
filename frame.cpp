@@ -1,5 +1,6 @@
 #include "frame.h"
 #include "QDebug"
+#include <QtGui>
 
 bool Frame::show(string windowFrame) {
     cv::imshow(windowFrame, mat);
@@ -57,6 +58,13 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat camer
 
 void Frame::drawRectangle(Rectangle rectangle) {
     cv::rectangle(mat, rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
+}
+
+QImage Frame::toQImage() {
+    cv::Mat temp(mat.cols, mat.rows, mat.type());
+    cvtColor(mat, temp, CV_BGR2RGB);
+    QImage dest= QImage((uchar*) temp.data, temp.cols, temp.rows, temp.step, QImage::Format_ARGB32);
+    return dest;
 }
 
 Frame::Frame(cv::Mat mat) {
