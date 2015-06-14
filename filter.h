@@ -17,6 +17,10 @@ protected:
 public:
     virtual Frame apply(Frame originalFrame) = 0;
     void performApplyFilter(Frame frame);
+
+    FilterHandler* getFilterHandler();
+    void setFilterHandler(FilterHandler *handler);
+
     ~Filter();
 };
 
