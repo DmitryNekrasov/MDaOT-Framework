@@ -1,6 +1,6 @@
 #include "frame.h"
 #include "QDebug"
-#include <QtGui>
+#include <QImage>
 
 bool Frame::show(string windowFrame) {
     cv::imshow(windowFrame, mat);
@@ -9,7 +9,8 @@ bool Frame::show(string windowFrame) {
 }
 
 void Frame::destroyWindow(string windowName) {
-    cv::destroyWindow(windowName);
+    cv::destroyAllWindows();
+//    cv::destroyWindow(windowName);
 }
 
 cv::Mat Frame::getCvMat() {
@@ -65,10 +66,8 @@ void Frame::drawRectangle(Rectangle rectangle) {
 }
 
 QImage Frame::toQImage() {
-    cv::Mat temp(mat.cols, mat.rows, mat.type());
-    cvtColor(mat, temp, CV_BGR2RGB);
-    QImage dest = QImage((uchar*) temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGBA8888);
-    return dest;
+    QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
+    return qimg;
 }
 
 Frame::Frame(cv::Mat mat) {

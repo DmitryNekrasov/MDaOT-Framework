@@ -1,7 +1,7 @@
 #include "backgroundsubtraction.h"
 
 void BackgroundSubtraction::detect(Video video) {
-    qDebug() << "Detection Sequential Images method";
+    qDebug() << "Detection Background Subtraction method";
 
     cv::Ptr<cv::BackgroundSubtractor> pMOG, pMOG2;
 
@@ -26,6 +26,10 @@ void BackgroundSubtraction::detect(Video video) {
     while (video.hasNext()) {
         frame = video.nextFrame();
 
+        if (region != NULL) {
+            frame = Frame(frame.getCvMat()(region->getCvRect()));
+        }
+
         cvFrame = frame.getCvMat();
 
         pMOG->operator()(cvFrame, fgMaskMOG);
@@ -36,9 +40,9 @@ void BackgroundSubtraction::detect(Video video) {
         moveObjectRectangles = Frame::searchForMovement(outFrame.getCvMat(), cvFrame);
 
         if (movenmentHandler != NULL) {
-            if (!moveObjectRectangles.empty()) {
-                performOnMove(Frame(cvFrame(moveObjectRectangles.at(0).getCvRect())));
-            }
+//            if (!moveObjectRectangles.empty()) {
+                performOnMove(frame);
+//            }
         }
 
         if (!moveObjectRectangles.empty())
@@ -55,10 +59,12 @@ void BackgroundSubtraction::detect(Video video) {
 
 BackgroundSubtraction::BackgroundSubtraction() {
     movenmentHandler = NULL;
+    region = NULL;
 }
 
 BackgroundSubtraction::BackgroundSubtraction(MovenmentHandler *handler) {
     movenmentHandler = handler;
+    region = NULL;
 }
 
 BackgroundSubtraction::~BackgroundSubtraction() {

@@ -6,6 +6,10 @@ Frame Video::nextFrame() {
     return Frame(next);
 }
 
+Video::Video() {
+
+}
+
 void Video::setWidth(int width) {
     capture.set(CV_CAP_PROP_FRAME_WIDTH, width);
 }

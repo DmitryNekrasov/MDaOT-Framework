@@ -7,19 +7,22 @@
 #include "backgroundsubtraction.h"
 #include "movenmenthandler.h"
 #include "mymovenmenthandler.h"
+#include "mainwindow.h"
 
 
 class Core
 {
 private:
 
+    MainWindow *window;
+
     static Core* instance;
 
-    Core();
+    Core(MainWindow *wnd);
 
 public:
 
-    static Core* getInstance();
+    static Core* getInstance(MainWindow *wnd);
     void start();
 
     ~Core();

@@ -1,69 +1,70 @@
 #include "sequentialimages.h"
 
 
-void SequentialImages::detect(Video video) {
+void SequentialImages::init()
+{
     qDebug() << "Detection Sequential Images method";
 
-    string mainWindowName = "Motion";
-
-    Filter *grayscaleFilter = new GrayscaleFilter();
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(10, 10);
-    Filter *bin = new BinaryFilter(1, new OutBinaryFH());
+    Filter *median = new MedianFilter(5);
 
     filterChain.add(binaryFilter);
+    filterChain.add(median);
     filterChain.add(blurFilter);
     filterChain.add(binaryFilter);
-    filterChain.add(blurFilter);
-    filterChain.add(bin);
 
-    Frame originalFrame1, grayFrame1, originalFrame2, grayFrame2, diffFrame, blurBinaryFrame;
+    grayscaleFilter = new GrayscaleFilter();
+}
 
-    while (video.hasNext()) {
-        originalFrame1 = video.nextFrame();
+void SequentialImages::processingFrame(Video &video)
+{
+    string mainWindowName = "Motion";
 
-        if (!video.hasNext())
-            break;
+    Frame originalFrame1 = video.nextFrame();
 
-        originalFrame2 = video.nextFrame();
+//        if (!video.hasNext())
+//            break;
 
-        if (region != NULL) {
-            originalFrame1 = Frame(originalFrame1.getCvMat()(region->getCvRect()));
-            originalFrame2 = Frame(originalFrame2.getCvMat()(region->getCvRect()));
-        }
+    Frame originalFrame2 = video.nextFrame();
 
-        grayFrame1 = grayscaleFilter->apply(originalFrame1);
-
-        grayFrame2 = grayscaleFilter->apply(originalFrame2);
-
-        diffFrame = Frame::difference(grayFrame1, grayFrame2);
-
-        blurBinaryFrame = filterChain.apply(diffFrame);
-
-        moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
-
-        if (movenmentHandler != NULL) {
-            if (!moveObjectRectangles.empty()) {
-                performOnMove(Frame(originalFrame1.getCvMat()(moveObjectRectangles.at(0).getCvRect())));
-            }
-        }
-
-        if (!moveObjectRectangles.empty())
-            for (int i = 0; i < moveObjectRectangles.size(); i++) {
-                int area = moveObjectRectangles.at(i).getArea();
-                if (area > 10000) {
-                    originalFrame1.drawRectangle(moveObjectRectangles.at(i));
-//                    qDebug() << area;
-                }
-            }
-
-        bool isContinue = originalFrame1.show(mainWindowName);
-        if (!isContinue)
-            break;
+    if (region != NULL) {
+        originalFrame1 = Frame(originalFrame1.getCvMat()(region->getCvRect()));
+        originalFrame2 = Frame(originalFrame2.getCvMat()(region->getCvRect()));
     }
+
+    Frame grayFrame1 = grayscaleFilter->apply(originalFrame1);
+
+    Frame grayFrame2 = grayscaleFilter->apply(originalFrame2);
+
+    Frame diffFrame = Frame::difference(grayFrame1, grayFrame2);
+
+    Frame blurBinaryFrame = filterChain.apply(diffFrame);
+//        blurBinaryFrame.show("qqq");
+
+    moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
+
+    if (movenmentHandler != NULL) {
+//            if (!moveObjectRectangles.empty()) {
+            performOnMove(originalFrame1);
+//            }
+    }
+
+    if (!moveObjectRectangles.empty())
+        for (int i = 0; i < moveObjectRectangles.size(); i++) {
+            int area = moveObjectRectangles.at(i).getArea();
+//                if (area > 10000) {
+                originalFrame1.drawRectangle(moveObjectRectangles.at(i));
+//                    qDebug() << area;
+//                }
+        }
 
 
     Frame::destroyWindow(mainWindowName);
+}
+
+void SequentialImages::detect(Video video) {
+    processingFrame(video);
 }
 
 SequentialImages::SequentialImages() {

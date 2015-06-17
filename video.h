@@ -23,6 +23,7 @@ public:
 
     Frame nextFrame();
 
+    Video();
     Video(int device);
     Video(string filePath);
     ~Video();

@@ -1,9 +1,10 @@
 #include "myfilterhandler.h"
 #include "QDebug"
 
-void MyFilterHandler::onApplyFilter(Frame frame) {
-    // здесь нужно писать код обработки отфильтрованного фрейма
 
+void MyFilterHandler::onApplyFilter(Frame frame)
+{
+    qDebug() << "Hello World!";
 }
 
 MyFilterHandler::MyFilterHandler() {

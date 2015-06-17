@@ -28,6 +28,7 @@ protected:
 public:
     ~DetectionMethod();
     virtual void detect(Video video) = 0;
+    virtual void init() = 0;
     void performOnMove(Frame frame);
     void setRegion(Rectangle *region);
 };

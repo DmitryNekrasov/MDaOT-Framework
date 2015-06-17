@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     outblurfh.cpp \
     outbinaryfh.cpp \
     recognitionmethod.cpp \
-    recognizer.cpp
+    recognizer.cpp \
+    withform.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -63,7 +64,8 @@ HEADERS  += mainwindow.h \
     outblurfh.h \
     outbinaryfh.h \
     recognitionmethod.h \
-    recognizer.h
+    recognizer.h \
+    withform.h
 
 FORMS    += mainwindow.ui
 
