@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
     vector<QString> filterNames = dm->getFilterChain().getNames();
     for (int i = 0; i < filterNames.size(); i++) {
         qDebug() << filterNames.at(i);
+//        ui->filterNamesList->;
+        ui->listName->addItem(filterNames.at(i));
     }
 }
 
@@ -76,4 +78,9 @@ void MainWindow::on_startPauseButton_clicked()
         timer->start();
         ui->startPauseButton->setText("Пауза");
     }
+}
+
+void MainWindow::on_listName_doubleClicked(const QModelIndex &index)
+{
+    qDebug() << "list double click" << ui->listName->currentRow();
 }
