@@ -70,10 +70,10 @@ void MainWindow::on_startPauseButton_clicked()
 {
     if (timer->isActive()) {
         timer->stop();
-        ui->startPauseButton->setText("Продолжить");
+        ui->startPauseButton->setText("▶");
     } else {
         timer->start();
-        ui->startPauseButton->setText("Пауза");
+        ui->startPauseButton->setText("▐▐");
     }
 }
 
@@ -82,4 +82,9 @@ void MainWindow::on_listName_doubleClicked(const QModelIndex &index)
     FilterDialog *filterDialogWindow = new FilterDialog();
     filterDialogWindow->setFilter(dm->getFilterChain()->getOnIndex(ui->listName->currentRow()));
     filterDialogWindow->show();
+}
+
+void MainWindow::on_closeButton_clicked()
+{
+    this->close();
 }

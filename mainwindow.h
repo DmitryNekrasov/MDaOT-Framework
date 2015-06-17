@@ -52,6 +52,7 @@ private slots:
     void on_pushButton_clicked();
     void on_startPauseButton_clicked();
     void on_listName_doubleClicked(const QModelIndex &index);
+    void on_closeButton_clicked();
 };
 
 
