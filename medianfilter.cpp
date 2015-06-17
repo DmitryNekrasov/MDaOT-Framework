@@ -24,11 +24,13 @@ void MedianFilter::setSize(int size) {
 MedianFilter::MedianFilter(int size) {
     this->size = size;
     filterHandler = NULL;
+    name = "Median";
 }
 
 MedianFilter::MedianFilter(int size, FilterHandler *handler) {
     this->size = size;
     filterHandler = handler;
+    name = "Median";
 }
 
 MedianFilter::~MedianFilter() {

@@ -1,5 +1,6 @@
 #ifndef FILTER_H
 #define FILTER_H
+#include "QString"
 #include "frame.h"
 #include "filterhandler.h"
 #include "myfilterhandler.h"
@@ -13,6 +14,7 @@ class Filter
 {
 protected:
     FilterHandler *filterHandler;
+    QString name;
 
 public:
     virtual Frame apply(Frame originalFrame) = 0;
@@ -20,6 +22,8 @@ public:
 
     FilterHandler* getFilterHandler();
     void setFilterHandler(FilterHandler *handler);
+
+    QString getName();
 
     ~Filter();
 };

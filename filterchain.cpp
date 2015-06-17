@@ -17,6 +17,22 @@ Frame FilterChain::apply(Frame startFrame) {
     return startFrame;
 }
 
+int FilterChain::getCount()
+{
+    return filters.size();
+}
+
+vector<QString> FilterChain::getNames()
+{
+    Filter* filter;
+    vector<QString> names;
+    for (vector<Filter*>::iterator it = filters.begin(); it != filters.end(); it++) {
+        filter = *it;
+        names.push_back(filter->getName());
+    }
+    return names;
+}
+
 FilterChain::FilterChain() {
 
 }

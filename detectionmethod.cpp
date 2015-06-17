@@ -13,3 +13,8 @@ void DetectionMethod::performOnMove(Frame frame) {
 void DetectionMethod::setRegion(Rectangle *region) {
     this->region = region;
 }
+
+FilterChain DetectionMethod::getFilterChain()
+{
+    return filterChain;
+}

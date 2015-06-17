@@ -33,12 +33,14 @@ BlurFilter::BlurFilter(int widthBlur, int heightBlur) {
     this->widthBlur = widthBlur;
     this->heightBlur = heightBlur;
     filterHandler = NULL;
+    name = "Blur";
 }
 
 BlurFilter::BlurFilter(int widthBlur, int heightBlur, FilterHandler *handler) {
     this->widthBlur = widthBlur;
     this->heightBlur = heightBlur;
     filterHandler = handler;
+    name = "Blur";
 }
 
 BlurFilter::~BlurFilter() {

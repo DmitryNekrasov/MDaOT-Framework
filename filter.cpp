@@ -14,6 +14,11 @@ void Filter::setFilterHandler(FilterHandler *handler) {
     filterHandler = handler;
 }
 
+QString Filter::getName()
+{
+    return name;
+}
+
 Filter::~Filter() {
 
 }

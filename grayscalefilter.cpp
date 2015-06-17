@@ -16,10 +16,12 @@ Frame GrayscaleFilter::apply(Frame originalFrame) {
 
 GrayscaleFilter::GrayscaleFilter() {
     filterHandler = NULL;
+    name = "Grayscale";
 }
 
 GrayscaleFilter::GrayscaleFilter(FilterHandler *handler) {
     filterHandler = handler;
+    name = "Grayscale";
 }
 
 GrayscaleFilter::~GrayscaleFilter() {

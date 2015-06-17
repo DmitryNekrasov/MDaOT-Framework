@@ -30,6 +30,12 @@ MainWindow::MainWindow(QWidget *parent) :
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(sl()));
     timer->start();
+
+    qDebug() << dm->getFilterChain().getCount();
+    vector<QString> filterNames = dm->getFilterChain().getNames();
+    for (int i = 0; i < filterNames.size(); i++) {
+        qDebug() << filterNames.at(i);
+    }
 }
 
 void MainWindow::sl() {

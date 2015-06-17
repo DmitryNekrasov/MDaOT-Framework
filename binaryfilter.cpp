@@ -25,11 +25,13 @@ void BinaryFilter::setThreshold(int threshold) {
 BinaryFilter::BinaryFilter(int threshold, FilterHandler *handler) {
     this->threshold = threshold;
     filterHandler = handler;
+    name = "Binary";
 }
 
 BinaryFilter::BinaryFilter(int threshold) {
     this->threshold = threshold;
     filterHandler = NULL;
+    name = "Binary";
 }
 
 BinaryFilter::~BinaryFilter() {

@@ -16,6 +16,8 @@ public:
     void add(Filter *filter);
     void clear();
     Frame apply(Frame startFrame);
+    int getCount();
+    vector<QString> getNames();
 
 
     FilterChain();
