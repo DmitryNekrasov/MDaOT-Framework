@@ -31,7 +31,7 @@ public:
     virtual void init() = 0;
     void performOnMove(Frame frame);
     void setRegion(Rectangle *region);
-    FilterChain getFilterChain();
+    FilterChain* getFilterChain();
 };
 
 #endif // DETECTIONMETHOD_H

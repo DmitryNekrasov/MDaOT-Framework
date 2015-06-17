@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     outbinaryfh.cpp \
     recognitionmethod.cpp \
     recognizer.cpp \
-    withform.cpp
+    withform.cpp \
+    filterdialog.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -65,9 +66,11 @@ HEADERS  += mainwindow.h \
     outbinaryfh.h \
     recognitionmethod.h \
     recognizer.h \
-    withform.h
+    withform.h \
+    filterdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    filterdialog.ui
 
 LIBS += -L/opt/local/lib \
         -lopencv_highgui \

@@ -26,6 +26,7 @@ public:
     static vector<Rectangle> searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed);
     void drawRectangle(Rectangle rectangle);
     QImage toQImage();
+    QImage filterToQImage();
 
     Frame(cv::Mat mat);
     Frame();

@@ -18,6 +18,7 @@ public:
     Frame apply(Frame startFrame);
     int getCount();
     vector<QString> getNames();
+    Filter* getOnIndex(int index);
 
 
     FilterChain();

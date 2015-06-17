@@ -70,6 +70,14 @@ QImage Frame::toQImage() {
     return qimg;
 }
 
+QImage Frame::filterToQImage()
+{
+    cv::Mat temp = mat;
+    cv::cvtColor(temp, temp, CV_GRAY2RGB);
+    QImage qimg((uchar*)temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGB888);
+    return qimg;
+}
+
 Frame::Frame(cv::Mat mat) {
     this->mat = mat;
 }

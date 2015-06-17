@@ -33,6 +33,11 @@ vector<QString> FilterChain::getNames()
     return names;
 }
 
+Filter *FilterChain::getOnIndex(int index)
+{
+    return filters.at(index);
+}
+
 FilterChain::FilterChain() {
 
 }

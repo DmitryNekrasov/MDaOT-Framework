@@ -31,8 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(sl()));
     timer->start();
 
-    qDebug() << dm->getFilterChain().getCount();
-    vector<QString> filterNames = dm->getFilterChain().getNames();
+    qDebug() << dm->getFilterChain()->getCount();
+    vector<QString> filterNames = dm->getFilterChain()->getNames();
     for (int i = 0; i < filterNames.size(); i++) {
         qDebug() << filterNames.at(i);
 //        ui->filterNamesList->;
@@ -83,4 +83,7 @@ void MainWindow::on_startPauseButton_clicked()
 void MainWindow::on_listName_doubleClicked(const QModelIndex &index)
 {
     qDebug() << "list double click" << ui->listName->currentRow();
+    FilterDialog *filterDialogWindow = new FilterDialog();
+    filterDialogWindow->setFilter(dm->getFilterChain()->getOnIndex(ui->listName->currentRow()));
+    filterDialogWindow->show();
 }

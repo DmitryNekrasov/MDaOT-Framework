@@ -1,7 +1,6 @@
 #ifndef MOVENMENTHANDLER_H
 #define MOVENMENTHANDLER_H
 #include "frame.h"
-//#include "mainwindow.h"
 
 class MainWindow;
 

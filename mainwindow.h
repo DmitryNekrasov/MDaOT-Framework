@@ -13,6 +13,7 @@
 #include "detectionmethod.h";
 #include "sequentialimages.h"
 #include "backgroundsubtraction.h"
+#include "filterdialog.h"
 
 
 namespace Ui {

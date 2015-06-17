@@ -14,7 +14,7 @@ void DetectionMethod::setRegion(Rectangle *region) {
     this->region = region;
 }
 
-FilterChain DetectionMethod::getFilterChain()
+FilterChain *DetectionMethod::getFilterChain()
 {
-    return filterChain;
+    return &filterChain;
 }

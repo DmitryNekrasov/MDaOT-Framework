@@ -8,11 +8,12 @@ void SequentialImages::init()
     Filter *binaryFilter = new BinaryFilter(20);
     Filter *blurFilter = new BlurFilter(10, 10);
     Filter *median = new MedianFilter(5);
+    Filter *finalBinaryFilter = new BinaryFilter(20);
 
     filterChain.add(binaryFilter);
     filterChain.add(median);
     filterChain.add(blurFilter);
-    filterChain.add(binaryFilter);
+    filterChain.add(finalBinaryFilter);
 
     grayscaleFilter = new GrayscaleFilter();
 }
