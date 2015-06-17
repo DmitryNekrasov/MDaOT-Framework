@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1074</width>
+    <width>1083</width>
     <height>497</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>950</x>
-     <y>450</y>
+     <y>460</y>
      <width>115</width>
      <height>32</height>
     </rect>
@@ -26,7 +26,148 @@
     <string>Закрыть</string>
    </property>
   </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>871</x>
+     <y>12</y>
+     <width>203</width>
+     <height>62</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Порог бинаризации:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox">
+        <property name="maximum">
+         <number>255</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>871</x>
+     <y>84</y>
+     <width>201</width>
+     <height>62</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="labelBlur">
+        <property name="text">
+         <string>Высота:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBoxBlur"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QSlider" name="horizontalSliderBlur">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1023</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>967</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1014</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1035</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBoxBlur</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSliderBlur</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1011</x>
+     <y>97</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>918</x>
+     <y>134</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSliderBlur</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBoxBlur</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>991</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1016</x>
+     <y>98</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
