@@ -22,6 +22,7 @@ void FilterDialog::setFilter(Filter *filter)
     FilterHandler* fh = new MyFilterHandler();
     fh->setWindow(this);
     filter->setFilterHandler(fh);
+    this->setWindowTitle(filter->getName());
 }
 
 void FilterDialog::closeEvent(QCloseEvent *event)
@@ -39,7 +40,6 @@ void FilterDialog::paintEvent(QPaintEvent *)
     QPainter painter(this); // определяем объект painter, который обеспечивает рисование
 
     if (qimg != NULL) {
-        qDebug() << "paint";
         painter.drawImage(0, 0, *qimg);
     }
 }
