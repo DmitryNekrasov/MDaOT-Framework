@@ -19,6 +19,7 @@ public:
     int getCount();
     vector<QString> getNames();
     Filter* getOnIndex(int index);
+    void deleteOnIndex(int index);
 
 
     FilterChain();

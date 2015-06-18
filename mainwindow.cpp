@@ -124,6 +124,17 @@ void MainWindow::on_listName_currentRowChanged(int currentRow)
         ui->topButton->setEnabled(true);
         ui->bottomButton->setEnabled(true);
     }
+
+    if (currentRow < 0) {
+        ui->deleteFilterButton->setEnabled(false);
+    } else {
+        ui->deleteFilterButton->setEnabled(true);
+    }
+
+    if (ui->listName->count() <= 1) {
+        ui->topButton->setEnabled(false);
+        ui->bottomButton->setEnabled(false);
+    }
 }
 
 void MainWindow::on_addFilterButton_clicked()
@@ -145,4 +156,11 @@ void MainWindow::on_addFilterButton_clicked()
 
     refreshList();
     ui->listName->setCurrentRow(dm->getFilterChain()->getCount() - 1);
+}
+
+void MainWindow::on_deleteFilterButton_clicked()
+{
+    int index = ui->listName->currentRow();
+    dm->getFilterChain()->deleteOnIndex(index);
+    refreshList();
 }

@@ -38,6 +38,11 @@ Filter *FilterChain::getOnIndex(int index)
     return filters.at(index);
 }
 
+void FilterChain::deleteOnIndex(int index)
+{
+    filters.erase(filters.begin() + index);
+}
+
 FilterChain::FilterChain() {
 
 }
