@@ -25,7 +25,7 @@ Frame Frame::difference(Frame frame1, Frame frame2) {
     return Frame(resultMat);
 }
 
-vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed) {
+vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed) {//, vector<Point*> points) {
     bool objectDetected = false;
     cv::Mat temp;
     thresholdImage.copyTo(temp);
@@ -66,15 +66,15 @@ void Frame::drawRectangle(Rectangle rectangle) {
 }
 
 QImage Frame::toQImage() {
+    cv::cvtColor(mat, mat, CV_BGR2RGB);
     QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
     return qimg;
 }
 
 QImage Frame::filterToQImage()
 {
-    cv::Mat temp = mat;
-    cv::cvtColor(temp, temp, CV_GRAY2RGB);
-    QImage qimg((uchar*)temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGB888);
+    cv::cvtColor(mat, mat, CV_GRAY2RGB);
+    QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
     return qimg;
 }
 

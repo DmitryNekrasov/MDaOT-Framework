@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     recognitionmethod.cpp \
     recognizer.cpp \
     withform.cpp \
-    filterdialog.cpp
+    filterdialog.cpp \
+    point.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -67,7 +68,8 @@ HEADERS  += mainwindow.h \
     recognitionmethod.h \
     recognizer.h \
     withform.h \
-    filterdialog.h
+    filterdialog.h \
+    point.h
 
 FORMS    += mainwindow.ui \
     filterdialog.ui

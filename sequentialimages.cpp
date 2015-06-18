@@ -46,9 +46,7 @@ void SequentialImages::processingFrame(Video &video)
     moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
 
     if (movenmentHandler != NULL) {
-//            if (!moveObjectRectangles.empty()) {
-            performOnMove(originalFrame1);
-//            }
+        performOnMove(originalFrame1);
     }
 
     if (!moveObjectRectangles.empty())
