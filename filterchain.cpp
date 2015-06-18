@@ -38,9 +38,21 @@ Filter *FilterChain::getOnIndex(int index)
     return filters.at(index);
 }
 
+void FilterChain::setOnIndex(int index, Filter *filter)
+{
+    filters.at(index) = filter;
+}
+
 void FilterChain::deleteOnIndex(int index)
 {
     filters.erase(filters.begin() + index);
+}
+
+void FilterChain::swapFilters(int i, int j)
+{
+    Filter *tmp = filters.at(i);
+    filters.at(i) = filters.at(j);
+    filters.at(j) = tmp;
 }
 
 FilterChain::FilterChain() {

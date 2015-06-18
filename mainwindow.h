@@ -58,6 +58,7 @@ private slots:
     void on_listName_currentRowChanged(int currentRow);
     void on_addFilterButton_clicked();
     void on_deleteFilterButton_clicked();
+    void on_bottomButton_clicked();
 };
 
 
