@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     myMH->setWindow(this);
     dm = new SequentialImages(myMH);
     detector.setDetectionMethod(dm);
+    ui->siRadio->setChecked(true);
+    ui->siRadio->setEnabled(false);
+    ui->bsRadio->setEnabled(false);
 
     // инициализация детектора (цепочка фильтров)
     detector.startDetector();
@@ -76,9 +79,13 @@ void MainWindow::on_startPauseButton_clicked()
     if (timer->isActive()) {
         timer->stop();
         ui->startPauseButton->setText("▶");
+        ui->siRadio->setEnabled(true);
+        ui->bsRadio->setEnabled(true);
     } else {
         timer->start();
         ui->startPauseButton->setText("▐▐");
+        ui->siRadio->setEnabled(false);
+        ui->bsRadio->setEnabled(false);
     }
 }
 
