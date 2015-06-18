@@ -35,6 +35,11 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i = 0; i < filterNames.size(); i++) {
         ui->listName->addItem(filterNames.at(i));
     }
+
+    ui->selectFilterCombo->addItem("Binary");
+    ui->selectFilterCombo->addItem("Blur");
+    ui->selectFilterCombo->addItem("Median");
+    ui->selectFilterCombo->addItem("Grayscale");
 }
 
 void MainWindow::sl() {
