@@ -59,6 +59,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="topButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1040</x>
@@ -72,6 +75,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="bottomButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1040</x>

@@ -43,6 +43,8 @@ private:
 
     QTimer *timer;
 
+    void refreshList();
+
 signals:
     void repaintSignal();
 
@@ -53,6 +55,8 @@ private slots:
     void on_startPauseButton_clicked();
     void on_listName_doubleClicked(const QModelIndex &index);
     void on_closeButton_clicked();
+    void on_listName_currentRowChanged(int currentRow);
+    void on_addFilterButton_clicked();
 };
 
 
