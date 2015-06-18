@@ -24,8 +24,9 @@ public:
     static void destroyWindow(string windowName);
     cv::Mat getCvMat();
     static Frame difference(Frame frame1, Frame frame2);
-    static vector<Rectangle> searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed);
+    static vector<Rectangle> searchForMovement(cv::Mat thresholdImage, vector<Point> *points);
     void drawRectangle(Rectangle rectangle);
+    void drawPoint(Point point);
     QImage toQImage();
     QImage filterToQImage();
 

@@ -11,7 +11,7 @@ protected:
 
 public:
 
-    virtual void onMove(Frame frame) = 0;
+    virtual void onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask) = 0;
     void setWindow(MainWindow *win);
 
     ~MovenmentHandler();

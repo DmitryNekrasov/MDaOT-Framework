@@ -7,7 +7,7 @@ class MyMovenmentHandler: public MovenmentHandler
 {
 public:
 
-    virtual void onMove(Frame frame);
+    virtual void onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask);
 
     MyMovenmentHandler();
     ~MyMovenmentHandler();

@@ -25,7 +25,10 @@ Frame Frame::difference(Frame frame1, Frame frame2) {
     return Frame(resultMat);
 }
 
-vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat cameraFeed) {//, vector<Point*> points) {
+vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point> *points) {
+
+    points->clear();
+
     bool objectDetected = false;
     cv::Mat temp;
     thresholdImage.copyTo(temp);
@@ -46,6 +49,17 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat camer
     vector<Rectangle> rectangles;
 
     if (objectDetected) {
+
+        // запомнить точки маски
+        for (vector< vector<cv::Point> >::iterator i = contours.begin(); i != contours.end(); i++) {
+            vector<cv::Point> pt = *i;
+            for (vector<cv::Point>::iterator j = pt.begin(); j != pt.end(); j++){
+                cv::Point cvPoint = *j;
+                Point point = Point(cvPoint);
+                points->push_back(point);
+            }
+        }
+
         vector< vector<cv::Point> > largestContourVec;
 
         for (int i = 0; i < contours.size(); i++) {
@@ -63,6 +77,12 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, cv::Mat camer
 
 void Frame::drawRectangle(Rectangle rectangle) {
     cv::rectangle(mat, rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
+}
+
+void Frame::drawPoint(Point point)
+{
+    cv::Rect rec = cv::Rect(point.getX(), point.getY(), 1, 1);
+    cv::rectangle(mat, rec, cv::Scalar(0, 0, 255), 3);
 }
 
 QImage Frame::toQImage() {

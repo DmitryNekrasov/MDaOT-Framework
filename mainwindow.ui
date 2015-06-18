@@ -44,6 +44,12 @@
     <property name="text">
      <string>Закрыть</string>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QGroupBox" name="dmGroupBox">
     <property name="geometry">
@@ -130,7 +136,7 @@
       <item>
        <widget class="QCheckBox" name="pixelCheckBox">
         <property name="text">
-         <string>Пиксельная маска</string>
+         <string>Контур</string>
         </property>
        </widget>
       </item>

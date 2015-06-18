@@ -7,6 +7,7 @@ class SequentialImages: public DetectionMethod
 {
 private:
     Filter *grayscaleFilter;
+    vector<Point> mask;
     void processingFrame(Video &video);
 
 public:

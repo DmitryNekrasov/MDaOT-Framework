@@ -60,6 +60,16 @@ void MainWindow::setQimg(QImage *img)
     qimg = img;
 }
 
+bool MainWindow::isOutMask()
+{
+    return outMask;
+}
+
+bool MainWindow::isOutRect()
+{
+    return outRect;
+}
+
 void MainWindow::paintEvent(QPaintEvent *)
 {
     QPainter painter(this); // определяем объект painter, который обеспечивает рисование
@@ -179,4 +189,14 @@ void MainWindow::on_topButton_clicked()
     dm->getFilterChain()->swapFilters(index, index - 1);
     refreshList();
     ui->listName->setCurrentRow(index - 1);
+}
+
+void MainWindow::on_recCheckBox_clicked()
+{
+    outRect = ui->recCheckBox->isChecked();
+}
+
+void MainWindow::on_pixelCheckBox_clicked()
+{
+    outMask = ui->pixelCheckBox->isChecked();
 }

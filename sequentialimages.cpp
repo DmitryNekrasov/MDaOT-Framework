@@ -43,10 +43,11 @@ void SequentialImages::processingFrame(Video &video)
     Frame blurBinaryFrame = filterChain.apply(diffFrame);
 //        blurBinaryFrame.show("qqq");
 
-    moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), originalFrame1.getCvMat());
+    vector<Point> mask;
+    moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), &mask);
 
     if (movenmentHandler != NULL) {
-        performOnMove(originalFrame1);
+        performOnMove(originalFrame1, &moveObjectRectangles, &mask);
     }
 
     if (!moveObjectRectangles.empty())

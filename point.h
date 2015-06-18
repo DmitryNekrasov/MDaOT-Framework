@@ -13,6 +13,8 @@ private:
 public:
 
     cv::Point getCvPoint();
+    int getX();
+    int getY();
 
     Point();
     Point(cv::Point point);

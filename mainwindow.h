@@ -29,6 +29,8 @@ public:
     ~MainWindow();
 
     void setQimg(QImage *img);
+    bool isOutMask();
+    bool isOutRect();
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -42,6 +44,9 @@ private:
     DetectionMethod *dm;
 
     QTimer *timer;
+
+    bool outRect = false;
+    bool outMask = false;
 
     void refreshList();
 
@@ -60,6 +65,8 @@ private slots:
     void on_deleteFilterButton_clicked();
     void on_bottomButton_clicked();
     void on_topButton_clicked();
+    void on_recCheckBox_clicked();
+    void on_pixelCheckBox_clicked();
 };
 
 

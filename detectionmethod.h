@@ -29,7 +29,7 @@ public:
     ~DetectionMethod();
     virtual void detect(Video video) = 0;
     virtual void init() = 0;
-    void performOnMove(Frame frame);
+    void performOnMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask);
     void setRegion(Rectangle *region);
     FilterChain* getFilterChain();
 };

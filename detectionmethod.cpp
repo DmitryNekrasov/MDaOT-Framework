@@ -6,8 +6,8 @@ DetectionMethod::~DetectionMethod() {
 
 }
 
-void DetectionMethod::performOnMove(Frame frame) {
-    movenmentHandler->onMove(frame);
+void DetectionMethod::performOnMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask) {
+    movenmentHandler->onMove(frame, rectangles, mask);
 }
 
 void DetectionMethod::setRegion(Rectangle *region) {
