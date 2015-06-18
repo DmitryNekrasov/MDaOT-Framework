@@ -172,3 +172,11 @@ void MainWindow::on_bottomButton_clicked()
     refreshList();
     ui->listName->setCurrentRow(index + 1);
 }
+
+void MainWindow::on_topButton_clicked()
+{
+    int index = ui->listName->currentRow();
+    dm->getFilterChain()->swapFilters(index, index - 1);
+    refreshList();
+    ui->listName->setCurrentRow(index - 1);
+}

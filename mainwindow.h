@@ -59,6 +59,7 @@ private slots:
     void on_addFilterButton_clicked();
     void on_deleteFilterButton_clicked();
     void on_bottomButton_clicked();
+    void on_topButton_clicked();
 };
 
 
