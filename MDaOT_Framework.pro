@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     recognizer.cpp \
     withform.cpp \
     filterdialog.cpp \
-    point.cpp
+    point.cpp \
+    mybackgroundsubtraction.cpp
 
 HEADERS  += mainwindow.h \
     core.h \
@@ -69,7 +70,8 @@ HEADERS  += mainwindow.h \
     recognizer.h \
     withform.h \
     filterdialog.h \
-    point.h
+    point.h \
+    mybackgroundsubtraction.h
 
 FORMS    += mainwindow.ui \
     filterdialog.ui

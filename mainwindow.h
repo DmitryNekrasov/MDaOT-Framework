@@ -12,7 +12,7 @@
 #include "mymovenmenthandler.h"
 #include "detectionmethod.h";
 #include "sequentialimages.h"
-#include "backgroundsubtraction.h"
+#include "mybackgroundsubtraction.h"
 #include "filterdialog.h"
 
 
@@ -41,7 +41,7 @@ private:
     Video video;
     Detector detector;
     MovenmentHandler *myMH;
-    DetectionMethod *dm;
+    DetectionMethod *si, *bs;
 
     QTimer *timer;
 
@@ -67,6 +67,8 @@ private slots:
     void on_topButton_clicked();
     void on_recCheckBox_clicked();
     void on_pixelCheckBox_clicked();
+    void on_bsRadio_clicked();
+    void on_siRadio_clicked();
 };
 
 

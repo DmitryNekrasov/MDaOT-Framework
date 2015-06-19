@@ -33,8 +33,6 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
         window->repaintSignal();
     }
 
-
-
     // сохраняем каждый кадр
     QString path = "/Users/ScanNorOne/Desktop/img/img" + QString::number(cnt) + ".jpg";
     qimg->save(path);

@@ -6,14 +6,14 @@
 class SequentialImages: public DetectionMethod
 {
 private:
+
     Filter *grayscaleFilter;
-    vector<Point> mask;
     void processingFrame(Video &video);
 
 public:
 
     virtual void detect(Video video);
-    virtual void init();
+    virtual void init(Video video);
 
     SequentialImages();
     SequentialImages(MovenmentHandler *handler);

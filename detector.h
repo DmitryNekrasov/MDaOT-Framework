@@ -12,8 +12,9 @@ protected:
 public:
 
     void setDetectionMethod(DetectionMethod* detectionMethod);
+    DetectionMethod* getDetectionMethod();
     void execute(Video video);
-    void startDetector();
+    void startDetector(Video video);
 
     Detector();
     ~Detector();

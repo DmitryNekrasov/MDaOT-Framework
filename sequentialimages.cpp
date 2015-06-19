@@ -1,31 +1,35 @@
 #include "sequentialimages.h"
 
 
-void SequentialImages::init()
+void SequentialImages::init(Video video)
 {
     qDebug() << "Detection Sequential Images method";
 
-    Filter *binaryFilter = new BinaryFilter(20);
-    Filter *blurFilter = new BlurFilter(10, 10);
-    Filter *median = new MedianFilter(5);
-    Filter *finalBinaryFilter = new BinaryFilter(20);
+    if (filterChain.getCount() == 0) {
 
-    filterChain.add(binaryFilter);
-    filterChain.add(median);
-    filterChain.add(blurFilter);
-    filterChain.add(finalBinaryFilter);
+        Filter *binaryFilter = new BinaryFilter(20);
+        Filter *blurFilter = new BlurFilter(10, 10);
+        Filter *median = new MedianFilter(5);
+        Filter *finalBinaryFilter = new BinaryFilter(20);
 
-    grayscaleFilter = new GrayscaleFilter();
+        filterChain.add(binaryFilter);
+        filterChain.add(median);
+        filterChain.add(blurFilter);
+        filterChain.add(finalBinaryFilter);
+
+        grayscaleFilter = new GrayscaleFilter();
+    }
 }
 
 void SequentialImages::processingFrame(Video &video)
 {
-    string mainWindowName = "Motion";
+    if (!video.hasNext())
+        return;
 
     Frame originalFrame1 = video.nextFrame();
 
-//        if (!video.hasNext())
-//            break;
+    if (!video.hasNext())
+        return;
 
     Frame originalFrame2 = video.nextFrame();
 
@@ -40,8 +44,8 @@ void SequentialImages::processingFrame(Video &video)
 
     Frame diffFrame = Frame::difference(grayFrame1, grayFrame2);
 
+    // применяем цепочку фильтров
     Frame blurBinaryFrame = filterChain.apply(diffFrame);
-//        blurBinaryFrame.show("qqq");
 
     vector<Point> mask;
     moveObjectRectangles = Frame::searchForMovement(blurBinaryFrame.getCvMat(), &mask);
@@ -49,18 +53,6 @@ void SequentialImages::processingFrame(Video &video)
     if (movenmentHandler != NULL) {
         performOnMove(originalFrame1, &moveObjectRectangles, &mask);
     }
-
-    if (!moveObjectRectangles.empty())
-        for (int i = 0; i < moveObjectRectangles.size(); i++) {
-            int area = moveObjectRectangles.at(i).getArea();
-//                if (area > 10000) {
-                originalFrame1.drawRectangle(moveObjectRectangles.at(i));
-//                    qDebug() << area;
-//                }
-        }
-
-
-    Frame::destroyWindow(mainWindowName);
 }
 
 void SequentialImages::detect(Video video) {

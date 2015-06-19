@@ -21,19 +21,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     myMH = new MyMovenmentHandler();
     myMH->setWindow(this);
-    dm = new SequentialImages(myMH);
-    detector.setDetectionMethod(dm);
-    ui->siRadio->setChecked(true);
-    ui->siRadio->setEnabled(false);
-    ui->bsRadio->setEnabled(false);
 
-    // инициализация детектора (цепочка фильтров)
-    detector.startDetector();
+    si = new SequentialImages(myMH);
+    bs = new MyBackgroundSubtraction(myMH);
 
-//    DetectionMethod *bs = new BackgroundSubtraction(myMH);
-//    bs->setRegion(new Rectangle(500, 300, 500, 200));
-//    detector.setDetectionMethod(bs);
+    detector.setDetectionMethod(bs);
 
+    ui->bsRadio->setChecked(true);
+//    ui->siRadio->setEnabled(false);
+//    ui->bsRadio->setEnabled(false);
+
+    // инициализация детектора (цепочка фильтров, фон)
+    detector.startDetector(video);
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(sl()));
@@ -72,18 +71,19 @@ bool MainWindow::isOutRect()
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this); // определяем объект painter, который обеспечивает рисование
+    QPainter painter(this);  // определяем объект painter, который обеспечивает рисование
 
     if (qimg != NULL) {
         painter.drawImage(0, 0, *qimg);
     }
-
 }
 
 void MainWindow::refreshList()
 {
+    DetectionMethod *dm = detector.getDetectionMethod();
     ui->listName->clear();
     vector<QString> filterNames = dm->getFilterChain()->getNames();
+    qDebug() << (dm->getFilterChain()->getCount());
     for (int i = 0; i < filterNames.size(); i++) {
         ui->listName->addItem(filterNames.at(i));
     }
@@ -105,13 +105,14 @@ void MainWindow::on_startPauseButton_clicked()
     } else {
         timer->start();
         ui->startPauseButton->setText("▐▐");
-        ui->siRadio->setEnabled(false);
-        ui->bsRadio->setEnabled(false);
+//        ui->siRadio->setEnabled(false);
+//        ui->bsRadio->setEnabled(false);
     }
 }
 
 void MainWindow::on_listName_doubleClicked(const QModelIndex &index)
 {
+    DetectionMethod *dm = detector.getDetectionMethod();
     FilterDialog *filterDialogWindow = new FilterDialog();
     filterDialogWindow->setFilter(dm->getFilterChain()->getOnIndex(ui->listName->currentRow()));
     filterDialogWindow->show();
@@ -127,7 +128,7 @@ void MainWindow::on_listName_currentRowChanged(int currentRow)
     if (currentRow == 0) {
         ui->bottomButton->setEnabled(true);
         ui->topButton->setEnabled(false);
-    } else if (currentRow == dm->getFilterChain()->getCount() - 1) {
+    } else if (currentRow == si->getFilterChain()->getCount() - 1) {
         ui->topButton->setEnabled(true);
         ui->bottomButton->setEnabled(false);
     } else {
@@ -162,6 +163,7 @@ void MainWindow::on_addFilterButton_clicked()
         filter = new GrayscaleFilter();
     }
 
+    DetectionMethod *dm = detector.getDetectionMethod();
     dm->getFilterChain()->add(filter);
 
     refreshList();
@@ -170,6 +172,7 @@ void MainWindow::on_addFilterButton_clicked()
 
 void MainWindow::on_deleteFilterButton_clicked()
 {
+    DetectionMethod *dm = detector.getDetectionMethod();
     int index = ui->listName->currentRow();
     dm->getFilterChain()->deleteOnIndex(index);
     refreshList();
@@ -177,6 +180,7 @@ void MainWindow::on_deleteFilterButton_clicked()
 
 void MainWindow::on_bottomButton_clicked()
 {
+    DetectionMethod *dm = detector.getDetectionMethod();
     int index = ui->listName->currentRow();
     dm->getFilterChain()->swapFilters(index, index + 1);
     refreshList();
@@ -185,6 +189,7 @@ void MainWindow::on_bottomButton_clicked()
 
 void MainWindow::on_topButton_clicked()
 {
+    DetectionMethod *dm = detector.getDetectionMethod();
     int index = ui->listName->currentRow();
     dm->getFilterChain()->swapFilters(index, index - 1);
     refreshList();
@@ -199,4 +204,22 @@ void MainWindow::on_recCheckBox_clicked()
 void MainWindow::on_pixelCheckBox_clicked()
 {
     outMask = ui->pixelCheckBox->isChecked();
+}
+
+void MainWindow::on_bsRadio_clicked()
+{
+    if (ui->bsRadio->isChecked()) {
+        detector.setDetectionMethod(bs);
+        detector.startDetector(video);
+        refreshList();
+    }
+}
+
+void MainWindow::on_siRadio_clicked()
+{
+    if (ui->siRadio->isChecked()) {
+        detector.setDetectionMethod(si);
+        detector.startDetector(video);
+        refreshList();
+    }
 }
