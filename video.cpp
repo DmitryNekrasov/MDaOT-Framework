@@ -1,39 +1,47 @@
 #include "video.h"
 
-Frame Video::nextFrame() {
+Frame Video::nextFrame()
+{
     cv::Mat next;
     capture >> next;
     return Frame(next);
 }
 
-Video::Video() {
+Video::Video()
+{
 
 }
 
-void Video::setWidth(int width) {
+void Video::setWidth(int width)
+{
     capture.set(CV_CAP_PROP_FRAME_WIDTH, width);
 }
 
-void Video::setHeight(int height) {
+void Video::setHeight(int height)
+{
     capture.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 }
 
-bool Video::hasNext() {
+bool Video::hasNext()
+{
     if (isFileOpen)
         return capture.get(CV_CAP_PROP_POS_FRAMES) < capture.get(CV_CAP_PROP_FRAME_COUNT) - 1;
     return true;
 }
 
-Video::Video(int device) {
+Video::Video(int device)
+{
     capture = cv::VideoCapture(device);
     isFileOpen = false;
 }
 
-Video::Video(string filePath) {
+Video::Video(string filePath)
+{
     capture = cv::VideoCapture(filePath);
     isFileOpen = true;
 }
 
-Video::~Video() {
+Video::~Video()
+{
 
 }

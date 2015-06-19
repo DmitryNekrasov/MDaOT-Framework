@@ -16,11 +16,13 @@ void MyFilterHandler::onApplyFilter(Frame frame)
     }
 }
 
-MyFilterHandler::MyFilterHandler() {
+MyFilterHandler::MyFilterHandler()
+{
 
 }
 
-MyFilterHandler::~MyFilterHandler() {
+MyFilterHandler::~MyFilterHandler()
+{
 
 }
 

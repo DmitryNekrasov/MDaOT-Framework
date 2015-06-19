@@ -6,11 +6,13 @@ void Filter::performApplyFilter(Frame frame)
     filterHandler->onApplyFilter(frame);
 }
 
-FilterHandler *Filter::getFilterHandler() {
+FilterHandler *Filter::getFilterHandler()
+{
     return filterHandler;
 }
 
-void Filter::setFilterHandler(FilterHandler *handler) {
+void Filter::setFilterHandler(FilterHandler *handler)
+{
     filterHandler = handler;
 }
 
@@ -19,6 +21,7 @@ QString Filter::getName()
     return name;
 }
 
-Filter::~Filter() {
+Filter::~Filter()
+{
 
 }

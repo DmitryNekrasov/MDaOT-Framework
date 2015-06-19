@@ -1,6 +1,7 @@
 #include "medianfilter.h"
 
-Frame MedianFilter::apply(Frame originalFrame) {
+Frame MedianFilter::apply(Frame originalFrame)
+{
     cv::Mat medianMat;
     cv::Mat originalMat = originalFrame.getCvMat();
     cv::medianBlur(originalMat, medianMat, size);
@@ -13,27 +14,32 @@ Frame MedianFilter::apply(Frame originalFrame) {
     return result;
 }
 
-int MedianFilter::getSize() {
+int MedianFilter::getSize()
+{
     return size;
 }
 
-void MedianFilter::setSize(int size) {
+void MedianFilter::setSize(int size)
+{
     this->size = size;
 }
 
-MedianFilter::MedianFilter(int size) {
+MedianFilter::MedianFilter(int size)
+{
     this->size = size;
     filterHandler = NULL;
     name = "Median";
 }
 
-MedianFilter::MedianFilter(int size, FilterHandler *handler) {
+MedianFilter::MedianFilter(int size, FilterHandler *handler)
+{
     this->size = size;
     filterHandler = handler;
     name = "Median";
 }
 
-MedianFilter::~MedianFilter() {
+MedianFilter::~MedianFilter()
+{
 
 }
 

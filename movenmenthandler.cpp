@@ -6,7 +6,8 @@ void MovenmentHandler::setWindow(MainWindow *win)
     this->window = win;
 }
 
-MovenmentHandler::~MovenmentHandler() {
+MovenmentHandler::~MovenmentHandler()
+{
 
 }
 

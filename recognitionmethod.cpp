@@ -1,7 +1,8 @@
 #include "recognitionmethod.h"
 
 
-RecognitionMethod::~RecognitionMethod() {
+RecognitionMethod::~RecognitionMethod()
+{
 
 }
 

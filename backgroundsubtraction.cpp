@@ -1,7 +1,8 @@
 #include "backgroundsubtraction.h"
 #include "point.h"
 
-void BackgroundSubtraction::detect(Video video) {
+void BackgroundSubtraction::detect(Video video)
+{
     qDebug() << "Detection Background Subtraction method";
 
     cv::Ptr<cv::BackgroundSubtractor> pMOG, pMOG2;
@@ -41,12 +42,6 @@ void BackgroundSubtraction::detect(Video video) {
         vector<Point> *mask;
         moveObjectRectangles = Frame::searchForMovement(outFrame.getCvMat(), mask);
 
-//        if (movenmentHandler != NULL) {
-////            if (!moveObjectRectangles.empty()) {
-//                performOnMove(frame, mov);
-////            }
-//        }
-
         if (!moveObjectRectangles.empty())
             frame.drawRectangle(moveObjectRectangles.at(0));
 
@@ -59,17 +54,20 @@ void BackgroundSubtraction::detect(Video video) {
     Frame::destroyWindow("outFrame");
 }
 
-BackgroundSubtraction::BackgroundSubtraction() {
+BackgroundSubtraction::BackgroundSubtraction()
+{
     movenmentHandler = NULL;
     region = NULL;
 }
 
-BackgroundSubtraction::BackgroundSubtraction(MovenmentHandler *handler) {
+BackgroundSubtraction::BackgroundSubtraction(MovenmentHandler *handler)
+{
     movenmentHandler = handler;
     region = NULL;
 }
 
-BackgroundSubtraction::~BackgroundSubtraction() {
+BackgroundSubtraction::~BackgroundSubtraction()
+{
 
 }
 

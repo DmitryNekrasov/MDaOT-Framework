@@ -2,22 +2,25 @@
 #include "QDebug"
 #include <QImage>
 
-bool Frame::show(string windowFrame) {
+bool Frame::show(string windowFrame)
+{
     cv::imshow(windowFrame, mat);
     int keyCode = cv::waitKey(10);
     return keyCode < 0;
 }
 
-void Frame::destroyWindow(string windowName) {
-    cv::destroyAllWindows();
-//    cv::destroyWindow(windowName);
+void Frame::destroyWindow(string windowName)
+{
+    cv::destroyWindow(windowName);
 }
 
-cv::Mat Frame::getCvMat() {
+cv::Mat Frame::getCvMat()
+{
     return mat;
 }
 
-Frame Frame::difference(Frame frame1, Frame frame2) {
+Frame Frame::difference(Frame frame1, Frame frame2)
+{
     cv::Mat mat1 = frame1.getCvMat();
     cv::Mat mat2 = frame2.getCvMat();
     cv::Mat resultMat;
@@ -25,8 +28,8 @@ Frame Frame::difference(Frame frame1, Frame frame2) {
     return Frame(resultMat);
 }
 
-vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point> *points) {
-
+vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point> *points)
+{
     points->clear();
 
     bool objectDetected = false;
@@ -75,7 +78,8 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point>
     return rectangles;
 }
 
-void Frame::drawRectangle(Rectangle rectangle) {
+void Frame::drawRectangle(Rectangle rectangle)
+{
     cv::rectangle(mat, rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
 }
 
@@ -85,7 +89,8 @@ void Frame::drawPoint(Point point)
     cv::rectangle(mat, rec, cv::Scalar(0, 0, 255), 3);
 }
 
-QImage Frame::toQImage() {
+QImage Frame::toQImage()
+{
     cv::cvtColor(mat, mat, CV_BGR2RGB);
     QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
     return qimg;
@@ -98,15 +103,18 @@ QImage Frame::filterToQImage()
     return qimg;
 }
 
-Frame::Frame(cv::Mat mat) {
+Frame::Frame(cv::Mat mat)
+{
     this->mat = mat;
 }
 
-Frame::Frame() {
+Frame::Frame()
+{
 
 }
 
-Frame::~Frame() {
+Frame::~Frame()
+{
 
 }
 

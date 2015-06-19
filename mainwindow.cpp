@@ -28,8 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     detector.setDetectionMethod(bs);
 
     ui->bsRadio->setChecked(true);
-//    ui->siRadio->setEnabled(false);
-//    ui->bsRadio->setEnabled(false);
 
     // инициализация детектора (цепочка фильтров, фон)
     detector.startDetector(video);
@@ -83,7 +81,6 @@ void MainWindow::refreshList()
     DetectionMethod *dm = detector.getDetectionMethod();
     ui->listName->clear();
     vector<QString> filterNames = dm->getFilterChain()->getNames();
-    qDebug() << (dm->getFilterChain()->getCount());
     for (int i = 0; i < filterNames.size(); i++) {
         ui->listName->addItem(filterNames.at(i));
     }
@@ -100,13 +97,9 @@ void MainWindow::on_startPauseButton_clicked()
     if (timer->isActive()) {
         timer->stop();
         ui->startPauseButton->setText("▶");
-        ui->siRadio->setEnabled(true);
-        ui->bsRadio->setEnabled(true);
     } else {
         timer->start();
         ui->startPauseButton->setText("▐▐");
-//        ui->siRadio->setEnabled(false);
-//        ui->bsRadio->setEnabled(false);
     }
 }
 

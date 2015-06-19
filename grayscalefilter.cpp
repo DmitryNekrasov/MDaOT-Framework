@@ -1,7 +1,8 @@
 #include "grayscalefilter.h"
 #include "QDebug"
 
-Frame GrayscaleFilter::apply(Frame originalFrame) {
+Frame GrayscaleFilter::apply(Frame originalFrame)
+{
     cv::Mat grayMat;
     cv::Mat originalMat = originalFrame.getCvMat();
     cv::cvtColor(originalMat, grayMat, CV_BGR2GRAY);
@@ -15,17 +16,20 @@ Frame GrayscaleFilter::apply(Frame originalFrame) {
     return result;
 }
 
-GrayscaleFilter::GrayscaleFilter() {
+GrayscaleFilter::GrayscaleFilter()
+{
     filterHandler = NULL;
     name = "Grayscale";
 }
 
-GrayscaleFilter::GrayscaleFilter(FilterHandler *handler) {
+GrayscaleFilter::GrayscaleFilter(FilterHandler *handler)
+{
     filterHandler = handler;
     name = "Grayscale";
 }
 
-GrayscaleFilter::~GrayscaleFilter() {
+GrayscaleFilter::~GrayscaleFilter()
+{
 
 }
 

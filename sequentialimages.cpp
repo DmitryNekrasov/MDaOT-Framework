@@ -55,16 +55,19 @@ void SequentialImages::processingFrame(Video &video)
     }
 }
 
-void SequentialImages::detect(Video video) {
+void SequentialImages::detect(Video video)
+{
     processingFrame(video);
 }
 
-SequentialImages::SequentialImages() {
+SequentialImages::SequentialImages()
+{
     movenmentHandler = NULL;
     region = NULL;
 }
 
-SequentialImages::SequentialImages(MovenmentHandler *handler) {
+SequentialImages::SequentialImages(MovenmentHandler *handler)
+{
     movenmentHandler = handler;
     region = NULL;
 }

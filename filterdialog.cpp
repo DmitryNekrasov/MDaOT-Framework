@@ -103,7 +103,7 @@ void FilterDialog::setQimg(QImage *img)
 
 void FilterDialog::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this); // определяем объект painter, который обеспечивает рисование
+    QPainter painter(this);  // определяем объект painter, который обеспечивает рисование
 
     if (qimg != NULL) {
         painter.drawImage(0, 0, *qimg);

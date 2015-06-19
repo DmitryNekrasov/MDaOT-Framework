@@ -5,7 +5,8 @@
 #include "mainwindow.h"
 
 int cnt = 0;
-void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask) {
+void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
+{
     // здесь нужно писать код обработки обнаруженного движущегося объекта
 
     // обводим обнаруженные объекты прямоугольниками

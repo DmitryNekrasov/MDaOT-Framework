@@ -2,15 +2,18 @@
 #include "QDebug"
 
 
-DetectionMethod::~DetectionMethod() {
+DetectionMethod::~DetectionMethod()
+{
 
 }
 
-void DetectionMethod::performOnMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask) {
+void DetectionMethod::performOnMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
+{
     movenmentHandler->onMove(frame, rectangles, mask);
 }
 
-void DetectionMethod::setRegion(Rectangle *region) {
+void DetectionMethod::setRegion(Rectangle *region)
+{
     this->region = region;
 }
 

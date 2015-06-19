@@ -1,6 +1,7 @@
 #include "outgrayscalefh.h"
 
-void OutGrayscaleFH::onApplyFilter(Frame frame) {
+void OutGrayscaleFH::onApplyFilter(Frame frame)
+{
     frame.show("Grayscale");
 }
 
