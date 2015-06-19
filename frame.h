@@ -14,10 +14,13 @@
 using namespace std;
 
 /*!
+ * Класс кадра видео.
+ * Содержит необходимые методы для работы с кадром.
  * \brief The Frame class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015
+ * Кадр
  */
 class Frame
 {
