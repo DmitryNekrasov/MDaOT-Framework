@@ -10,7 +10,7 @@
  * \version 0.1
  * \date Июнь 2015
  */
-class MyMovenmentHandler: public MovenmentHandler
+class MyMovenmentHandler : public MovenmentHandler
 {
 public:
 

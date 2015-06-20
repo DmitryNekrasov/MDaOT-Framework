@@ -249,7 +249,7 @@ private slots:
      * становится < 0, и кнопки применения и удаления цепочки становятся
      * недоступными.
      * \brief on_chainCombo_currentIndexChanged
-     * \param index
+     * \param index Текущий индекс
      */
     void on_chainCombo_currentIndexChanged(int index);
 

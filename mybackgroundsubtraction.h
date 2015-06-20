@@ -12,7 +12,7 @@
  * \version 0.1
  * \date Июнь 2015
  */
-class MyBackgroundSubtraction: public DetectionMethod
+class MyBackgroundSubtraction : public DetectionMethod
 {
 private:
 

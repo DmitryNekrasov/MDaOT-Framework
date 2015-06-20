@@ -11,7 +11,7 @@
  * \version 0.1
  * \date Июнь 2015
  */
-class SequentialImages: public DetectionMethod
+class SequentialImages : public DetectionMethod
 {
 private:
 

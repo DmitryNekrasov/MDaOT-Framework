@@ -11,7 +11,7 @@
  * \version 0.1
  * \date Июнь 2015
  */
-class BinaryFilter: public Filter
+class BinaryFilter : public Filter
 {
 private:
 

@@ -11,7 +11,7 @@
  * \version 0.1
  * \date Июнь 2015
  */
-class MedianFilter: public Filter
+class MedianFilter : public Filter
 {
 private:
 
