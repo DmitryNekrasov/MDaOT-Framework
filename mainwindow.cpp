@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadPreset();
     if (ui->chainCombo->count() == 0) {
+        ui->chainCombo->setEnabled(false);
         ui->applyChainButton->setEnabled(false);
         ui->deleteChainButton->setEnabled(false);
     }
@@ -95,6 +96,8 @@ void MainWindow::refreshList()
 
 void MainWindow::loadPreset()
 {
+    preset.clear();
+
     QFile file(pathToPreset);
     file.open(QIODevice::ReadOnly);
     QTextStream inFile(&file);
@@ -156,6 +159,49 @@ void MainWindow::refreshPresetList()
     }
 }
 
+void MainWindow::writeChainInFile()
+{
+    QFile file(pathToPreset);
+    file.open(QIODevice::WriteOnly);
+    QTextStream outFile(&file);
+
+    int chainCount = preset.size();
+    int filterCount;
+    Filter *filter;
+    MedianFilter *median;
+    BinaryFilter *binary;
+    BlurFilter *blur;
+    outFile << chainCount << "\n";
+
+    for (vector<FilterChain>::iterator it = preset.begin(); it != preset.end(); it++) {
+        FilterChain filterChain = *it;
+        outFile << filterChain.getChainName() << "\n";
+        filterCount = filterChain.getCount();
+        outFile << filterCount << "\n";
+        for (int j = 0; j < filterCount; j++) {
+            filter = filterChain.getOnIndex(j);
+            if (dynamic_cast<BinaryFilter*>(filter)) {
+                outFile << BINARY_CODE << " ";
+                binary = dynamic_cast<BinaryFilter*>(filter);
+                outFile << binary->getThreshold() << "\n";
+            } else if (dynamic_cast<BlurFilter*>(filter)) {
+                outFile << BLUR_CODE << " ";
+                blur = dynamic_cast<BlurFilter*>(filter);
+                outFile << blur->getWidthBlur() << " ";
+                outFile << blur->getHeightBlur() << "\n";
+            } else if (dynamic_cast<MedianFilter*>(filter)) {
+                outFile << MEDIAN_CODE << " ";
+                median = dynamic_cast<MedianFilter*>(filter);
+                outFile << median->getSize() << "\n";
+            } else if (dynamic_cast<GrayscaleFilter*>(filter)) {
+                outFile << GRAYSCALE_CODE << "\n";
+            }
+        }
+    }
+
+    file.close();
+}
+
 void MainWindow::on_pushButton_clicked()
 {
 
@@ -200,8 +246,12 @@ void MainWindow::on_listName_currentRowChanged(int currentRow)
 
     if (currentRow < 0) {
         ui->deleteFilterButton->setEnabled(false);
+        ui->clearChainButton->setEnabled(false);
+        ui->addChainButton->setEnabled(false);
     } else {
         ui->deleteFilterButton->setEnabled(true);
+        ui->clearChainButton->setEnabled(true);
+        ui->addChainButton->setEnabled(true);
     }
 
     if (ui->listName->count() <= 1) {
@@ -294,7 +344,9 @@ void MainWindow::on_clearChainButton_clicked()
 
 void MainWindow::on_applyChainButton_clicked()
 {
+
     int chainIndex = ui->chainCombo->currentIndex();
+    loadPreset();
     detector.getDetectionMethod()->setFilterChain(preset.at(chainIndex));
     refreshList();
 }
@@ -304,45 +356,7 @@ void MainWindow::on_deleteChainButton_clicked()
     int chainIndex = ui->chainCombo->currentIndex();
     preset.erase(preset.begin() + chainIndex);
 
-    QFile file(pathToPreset);
-    file.open(QIODevice::WriteOnly);
-    QTextStream outFile(&file);
-
-    int chainCount = preset.size();
-    int filterCount;
-    Filter *filter;
-    MedianFilter *median;
-    BinaryFilter *binary;
-    BlurFilter *blur;
-    outFile << chainCount << "\n";
-
-    for (vector<FilterChain>::iterator it = preset.begin(); it != preset.end(); it++) {
-        FilterChain filterChain = *it;
-        outFile << filterChain.getChainName() << "\n";
-        filterCount = filterChain.getCount();
-        outFile << filterCount << "\n";
-        for (int j = 0; j < filterCount; j++) {
-            filter = filterChain.getOnIndex(j);
-            if (dynamic_cast<BinaryFilter*>(filter)) {
-                outFile << BINARY_CODE << " ";
-                binary = dynamic_cast<BinaryFilter*>(filter);
-                outFile << binary->getThreshold() << "\n";
-            } else if (dynamic_cast<BlurFilter*>(filter)) {
-                outFile << BLUR_CODE << " ";
-                blur = dynamic_cast<BlurFilter*>(filter);
-                outFile << blur->getWidthBlur() << " ";
-                outFile << blur->getHeightBlur() << "\n";
-            } else if (dynamic_cast<MedianFilter*>(filter)) {
-                outFile << MEDIAN_CODE << " ";
-                median = dynamic_cast<MedianFilter*>(filter);
-                outFile << median->getSize() << "\n";
-            } else if (dynamic_cast<GrayscaleFilter*>(filter)) {
-                outFile << GRAYSCALE_CODE << "\n";
-            }
-        }
-    }
-
-    file.close();
+    writeChainInFile();
 
     refreshPresetList();
 }
@@ -350,10 +364,27 @@ void MainWindow::on_deleteChainButton_clicked()
 void MainWindow::on_chainCombo_currentIndexChanged(int index)
 {
     if (index < 0) {
+        ui->chainCombo->setEnabled(false);
         ui->applyChainButton->setEnabled(false);
         ui->deleteChainButton->setEnabled(false);
     } else {
+        ui->chainCombo->setEnabled(true);
         ui->applyChainButton->setEnabled(true);
         ui->deleteChainButton->setEnabled(true);
+    }
+}
+
+void MainWindow::on_addChainButton_clicked()
+{
+    QStringList tmp;
+    bool ok;
+    QString chainName = QInputDialog::getItem(this, "Новый пресет", "Название пресета:", tmp, 0, true, &ok);
+
+    if (ok) {
+        detector.getDetectionMethod()->getFilterChain()->setChainName(chainName);
+        preset.push_back(*detector.getDetectionMethod()->getFilterChain());
+        writeChainInFile();
+        loadPreset();
+        refreshPresetList();
     }
 }

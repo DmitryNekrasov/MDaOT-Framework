@@ -8,6 +8,7 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
+#include <QInputDialog>
 
 #include "video.h"
 #include "detector.h"
@@ -62,6 +63,7 @@ private:
     void refreshList();
     void loadPreset();
     void refreshPresetList();
+    void writeChainInFile();
 
 signals:
     void repaintSignal();
@@ -86,6 +88,7 @@ private slots:
     void on_applyChainButton_clicked();
     void on_deleteChainButton_clicked();
     void on_chainCombo_currentIndexChanged(int index);
+    void on_addChainButton_clicked();
 };
 
 

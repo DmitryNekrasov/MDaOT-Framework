@@ -235,7 +235,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Добавить цепочку в пресет</string>
+      <string>Добавить цепочку в пресеты</string>
      </property>
     </widget>
     <widget class="QPushButton" name="addFilterButton">
@@ -272,7 +272,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Пресет цепочек фильтров</string>
+     <string>Пресеты цепочек фильтров</string>
     </property>
     <widget class="QComboBox" name="chainCombo">
      <property name="geometry">
