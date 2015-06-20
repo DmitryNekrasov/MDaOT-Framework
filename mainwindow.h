@@ -24,6 +24,11 @@
 #define MEDIAN_CODE 3
 #define GRAYSCALE_CODE 4
 
+#define BINARY_NAME "Binary"
+#define BLUR_NAME "Blur"
+#define MEDIAN_NAME "Median"
+#define GRAYSCALE_NAME "Grayscale"
+
 
 namespace Ui {
 class MainWindow;

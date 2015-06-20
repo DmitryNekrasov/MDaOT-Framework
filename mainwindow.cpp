@@ -1,11 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#define BINARY_NAME "Binary"
-#define BLUR_NAME "Blur"
-#define MEDIAN_NAME "Median"
-#define GRAYSCALE_NAME "Grayscale"
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,7 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->selectFilterCombo->addItem(MEDIAN_NAME);
 }
 
-void MainWindow::sl() {
+void MainWindow::sl()
+{
     detector.execute(video);
 }
 

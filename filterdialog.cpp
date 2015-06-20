@@ -116,11 +116,6 @@ void FilterDialog::on_closeButton_clicked()
     this->close();
 }
 
-void FilterDialog::on_FilterDialog_destroyed()
-{}
-
-
-
 void FilterDialog::on_horizontalSlider_valueChanged(int value)
 {
     if (filterCode == BINARY_CODE) {
