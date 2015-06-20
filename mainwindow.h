@@ -5,6 +5,9 @@
 #include <QPainter>
 #include <QTimer>
 #include <QDebug>
+#include <QString>
+#include <QFile>
+#include <QTextStream>
 
 #include "video.h"
 #include "detector.h"
@@ -14,6 +17,11 @@
 #include "sequentialimages.h"
 #include "mybackgroundsubtraction.h"
 #include "filterdialog.h"
+
+#define BINARY_CODE 1
+#define BLUR_CODE 2
+#define MEDIAN_CODE 3
+#define GRAYSCALE_CODE 4
 
 
 namespace Ui {
@@ -44,11 +52,16 @@ private:
     DetectionMethod *si, *bs;
 
     QTimer *timer;
+    QString pathToPreset = "/Users/ScanNorOne/Desktop/preset.fchain";
+
+    vector<FilterChain> preset;
 
     bool outRect = false;
     bool outMask = false;
 
     void refreshList();
+    void loadPreset();
+    void refreshPresetList();
 
 signals:
     void repaintSignal();

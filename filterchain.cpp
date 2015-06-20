@@ -58,6 +58,16 @@ void FilterChain::swapFilters(int i, int j)
     filters.at(j) = tmp;
 }
 
+QString FilterChain::getChainName()
+{
+    return chainName;
+}
+
+void FilterChain::setChainName(QString name)
+{
+    chainName = name;
+}
+
 FilterChain::FilterChain()
 {
 

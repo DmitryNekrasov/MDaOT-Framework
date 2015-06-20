@@ -19,6 +19,7 @@ class FilterChain
 private:
 
     vector<Filter*> filters;
+    QString chainName;
 
 public:
 
@@ -87,6 +88,20 @@ public:
      * \param j Индекс второго фильтра
      */
     void swapFilters(int i, int j);
+
+    /*!
+     * Возвращает название цепочки фильтров
+     * \brief getChainName
+     * \return Название цепочки фильтров
+     */
+    QString getChainName();
+
+    /*!
+     * Изменяет название цепочки фильтров
+     * \brief setChainName
+     * \param name Название цепочки фильтров
+     */
+    void setChainName(QString name);
 
     /*!
      * Конструктор по умолчанию

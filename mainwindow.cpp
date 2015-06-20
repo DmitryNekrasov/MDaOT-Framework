@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     qimg = NULL;
     connect(this, SIGNAL(repaintSignal()), this, SLOT(repaint()));
 
+    loadPreset();
+
     video = Video("/Users/ScanNorOne/Desktop/s480.mp4");
 
     detector = Detector();
@@ -85,6 +87,67 @@ void MainWindow::refreshList()
         ui->listName->addItem(filterNames.at(i));
     }
     ui->listName->setCurrentRow(0);
+}
+
+void MainWindow::loadPreset()
+{
+    QFile file(pathToPreset);
+    file.open(QIODevice::ReadOnly);
+    QTextStream inFile(&file);
+
+    int countFilterChain;
+    QString chainName;
+    int countFilter;
+    int typeFilter;
+    int threshold;
+    int medianSize;
+    int blurWidth;
+    int blurHeight;
+
+    inFile >> countFilterChain;
+
+    for (int i = 0; i < countFilterChain; i++) {
+        FilterChain filterChain;
+        inFile >> chainName;
+        filterChain.setChainName(chainName);
+        inFile >> countFilter;
+        for (int j = 0; j < countFilter; j++) {
+            Filter *filter;
+            inFile >> typeFilter;
+            switch (typeFilter) {
+                case BINARY_CODE:
+                    inFile >> threshold;
+                    filter = new BinaryFilter(threshold);
+                    break;
+                case BLUR_CODE:
+                    inFile >> blurWidth;
+                    inFile >> blurHeight;
+                    filter = new BlurFilter(blurWidth, blurHeight);
+                    break;
+                case MEDIAN_CODE:
+                    inFile >> medianSize;
+                    filter = new MedianFilter(medianSize);
+                    break;
+                case GRAYSCALE_CODE:
+                    filter = new GrayscaleFilter();
+                    break;
+            }
+            filterChain.add(filter);
+        }
+        preset.push_back(filterChain);
+    }
+
+    file.close();
+
+    refreshPresetList();
+}
+
+void MainWindow::refreshPresetList()
+{
+    for (vector<FilterChain>::iterator it = preset.begin(); it != preset.end(); it++) {
+        FilterChain filterChain = *it;
+        ui->chainCombo->addItem(filterChain.getChainName());
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
