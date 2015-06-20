@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "core.h"
-#include "withform.h"
+
 
 int main(int argc, char *argv[])
 {

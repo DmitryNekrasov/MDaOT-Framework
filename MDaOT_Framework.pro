@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    core.cpp \
     video.cpp \
     frame.cpp \
     detector.cpp \
@@ -26,7 +25,6 @@ SOURCES += main.cpp\
     blurfilter.cpp \
     filterchain.cpp \
     medianfilter.cpp \
-    backgroundsubtraction.cpp \
     rectangle.cpp \
     movenmenthandler.cpp \
     mymovenmenthandler.cpp \
@@ -38,13 +36,11 @@ SOURCES += main.cpp\
     outbinaryfh.cpp \
     recognitionmethod.cpp \
     recognizer.cpp \
-    withform.cpp \
     filterdialog.cpp \
     point.cpp \
     mybackgroundsubtraction.cpp
 
 HEADERS  += mainwindow.h \
-    core.h \
     video.h \
     frame.h \
     detector.h \
@@ -56,7 +52,6 @@ HEADERS  += mainwindow.h \
     blurfilter.h \
     filterchain.h \
     medianfilter.h \
-    backgroundsubtraction.h \
     rectangle.h \
     movenmenthandler.h \
     mymovenmenthandler.h \
@@ -68,7 +63,6 @@ HEADERS  += mainwindow.h \
     outbinaryfh.h \
     recognitionmethod.h \
     recognizer.h \
-    withform.h \
     filterdialog.h \
     point.h \
     mybackgroundsubtraction.h
