@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(repaintSignal()), this, SLOT(repaint()));
 
     loadPreset();
+    if (ui->chainCombo->count() == 0) {
+        ui->applyChainButton->setEnabled(false);
+        ui->deleteChainButton->setEnabled(false);
+    }
 
     video = Video("/Users/ScanNorOne/Desktop/s480.mp4");
 
@@ -293,4 +297,63 @@ void MainWindow::on_applyChainButton_clicked()
     int chainIndex = ui->chainCombo->currentIndex();
     detector.getDetectionMethod()->setFilterChain(preset.at(chainIndex));
     refreshList();
+}
+
+void MainWindow::on_deleteChainButton_clicked()
+{
+    int chainIndex = ui->chainCombo->currentIndex();
+    preset.erase(preset.begin() + chainIndex);
+
+    QFile file(pathToPreset);
+    file.open(QIODevice::WriteOnly);
+    QTextStream outFile(&file);
+
+    int chainCount = preset.size();
+    int filterCount;
+    Filter *filter;
+    MedianFilter *median;
+    BinaryFilter *binary;
+    BlurFilter *blur;
+    outFile << chainCount << "\n";
+
+    for (vector<FilterChain>::iterator it = preset.begin(); it != preset.end(); it++) {
+        FilterChain filterChain = *it;
+        outFile << filterChain.getChainName() << "\n";
+        filterCount = filterChain.getCount();
+        outFile << filterCount << "\n";
+        for (int j = 0; j < filterCount; j++) {
+            filter = filterChain.getOnIndex(j);
+            if (dynamic_cast<BinaryFilter*>(filter)) {
+                outFile << BINARY_CODE << " ";
+                binary = dynamic_cast<BinaryFilter*>(filter);
+                outFile << binary->getThreshold() << "\n";
+            } else if (dynamic_cast<BlurFilter*>(filter)) {
+                outFile << BLUR_CODE << " ";
+                blur = dynamic_cast<BlurFilter*>(filter);
+                outFile << blur->getWidthBlur() << " ";
+                outFile << blur->getHeightBlur() << "\n";
+            } else if (dynamic_cast<MedianFilter*>(filter)) {
+                outFile << MEDIAN_CODE << " ";
+                median = dynamic_cast<MedianFilter*>(filter);
+                outFile << median->getSize() << "\n";
+            } else if (dynamic_cast<GrayscaleFilter*>(filter)) {
+                outFile << GRAYSCALE_CODE << "\n";
+            }
+        }
+    }
+
+    file.close();
+
+    refreshPresetList();
+}
+
+void MainWindow::on_chainCombo_currentIndexChanged(int index)
+{
+    if (index < 0) {
+        ui->applyChainButton->setEnabled(false);
+        ui->deleteChainButton->setEnabled(false);
+    } else {
+        ui->applyChainButton->setEnabled(true);
+        ui->deleteChainButton->setEnabled(true);
+    }
 }

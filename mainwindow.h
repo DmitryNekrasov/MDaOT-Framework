@@ -84,6 +84,8 @@ private slots:
     void on_siRadio_clicked();
     void on_clearChainButton_clicked();
     void on_applyChainButton_clicked();
+    void on_deleteChainButton_clicked();
+    void on_chainCombo_currentIndexChanged(int index);
 };
 
 
