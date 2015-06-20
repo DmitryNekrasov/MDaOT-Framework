@@ -6,7 +6,7 @@
 /*!
  * Реализация обработчика фильтра.
  * Вывод кадра после применения фильтра размытие.
- * \brief OutBlurFH class
+ * \brief The OutBlurFH class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

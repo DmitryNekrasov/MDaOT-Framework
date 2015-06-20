@@ -6,7 +6,7 @@
 
 /*!
  * Фильтр размытие
- * \brief BlurFilter class
+ * \brief The BlurFilter class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

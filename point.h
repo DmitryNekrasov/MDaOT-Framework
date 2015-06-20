@@ -10,7 +10,7 @@
 /*!
  * Точка.
  * Используется для рисования контура вокруг обнаруженных объектов.
- * \brief Point class
+ * \brief The Point class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

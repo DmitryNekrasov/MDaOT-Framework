@@ -6,7 +6,7 @@
 
 /*!
  * Фильтр градации серого
- * \brief GrayscaleFilter class
+ * \brief The GrayscaleFilter class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

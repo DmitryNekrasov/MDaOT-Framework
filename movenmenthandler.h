@@ -7,7 +7,7 @@ class MainWindow;
 
 /*!
  * Абстрактный класс обработчика движения
- * \brief MovenmentHandler class
+ * \brief The MovenmentHandler class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

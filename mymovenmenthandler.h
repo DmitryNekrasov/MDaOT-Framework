@@ -5,7 +5,7 @@
 
 /*!
  * Реализация обработчика движения
- * \brief MyMovenmentHandler class
+ * \brief The MyMovenmentHandler class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

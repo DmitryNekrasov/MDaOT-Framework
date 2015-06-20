@@ -6,7 +6,7 @@
 /*!
  * Реализация обработчика фильтра.
  * Вывод кадра после применения фильтра бинаризация.
- * \brief OutBinaryFH class
+ * \brief The OutBinaryFH class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

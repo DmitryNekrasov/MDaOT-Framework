@@ -6,7 +6,7 @@
 /*!
  * Реализация обработчика фильтра.
  * Отдаёт кадр после применения фильтра на форму.
- * \brief MyFilterHandler class
+ * \brief The MyFilterHandler class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

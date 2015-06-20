@@ -6,7 +6,7 @@
 
 /*!
  * Фильтр бинаризация
- * \brief BinaryFilter class
+ * \brief The BinaryFilter class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

@@ -10,7 +10,7 @@
 /*!
  * Прямоугольник.
  * Используется для выделения обнаруженных объектов.
- * \brief Rectangle class
+ * \brief The Rectangle class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

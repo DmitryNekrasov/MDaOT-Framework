@@ -6,7 +6,7 @@
 /*!
  * Реализация обработчика фильтра.
  * Вывод кадра после применения медианного фильтра.
- * \brief OutMedianFH class
+ * \brief The OutMedianFH class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

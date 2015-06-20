@@ -6,7 +6,7 @@
 /*!
  * Реализация обработчика фильтра.
  * Вывод кадра после применения фильтра градации серого.
- * \brief OutGrayscaleFH class
+ * \brief The OutGrayscaleFH class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

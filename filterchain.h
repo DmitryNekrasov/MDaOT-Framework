@@ -9,7 +9,7 @@ using namespace std;
 
 /*!
  * Цепочка фильтров
- * \brief FilterChain class
+ * \brief The FilterChain class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

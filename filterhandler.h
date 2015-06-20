@@ -7,7 +7,7 @@ class FilterDialog;
 
 /*!
  * Абстрактный класс обработчика фильтра
- * \brief FilterHandler class
+ * \brief The FilterHandler class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015

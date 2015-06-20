@@ -6,7 +6,7 @@
 
 /*!
  * Медианный фильтр
- * \brief MedianFilter class
+ * \brief The MedianFilter class
  * \author Dmitry Nekrasov
  * \version 0.1
  * \date Июнь 2015
