@@ -73,6 +73,13 @@ public:
      */
     FilterChain* getFilterChain();
 
+    /*!
+     * Изменяет цепочку фильтров для данного метода
+     * \brief setFilterChain
+     * \param chain Цепочка фильтров
+     */
+    void setFilterChain(FilterChain chain);
+
     ~DetectionMethod();
 };
 

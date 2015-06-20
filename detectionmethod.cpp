@@ -21,3 +21,8 @@ FilterChain *DetectionMethod::getFilterChain()
 {
     return &filterChain;
 }
+
+void DetectionMethod::setFilterChain(FilterChain chain)
+{
+    filterChain = chain;
+}

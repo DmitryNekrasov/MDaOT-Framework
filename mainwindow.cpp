@@ -144,6 +144,8 @@ void MainWindow::loadPreset()
 
 void MainWindow::refreshPresetList()
 {
+    ui->chainCombo->clear();
+
     for (vector<FilterChain>::iterator it = preset.begin(); it != preset.end(); it++) {
         FilterChain filterChain = *it;
         ui->chainCombo->addItem(filterChain.getChainName());
@@ -283,5 +285,12 @@ void MainWindow::on_siRadio_clicked()
 void MainWindow::on_clearChainButton_clicked()
 {
     detector.getDetectionMethod()->getFilterChain()->clear();
+    refreshList();
+}
+
+void MainWindow::on_applyChainButton_clicked()
+{
+    int chainIndex = ui->chainCombo->currentIndex();
+    detector.getDetectionMethod()->setFilterChain(preset.at(chainIndex));
     refreshList();
 }
