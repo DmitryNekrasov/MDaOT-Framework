@@ -2,6 +2,7 @@
 #include "QDebug"
 #include <QImage>
 
+
 bool Frame::show(string windowFrame)
 {
     cv::imshow(windowFrame, mat);
@@ -36,7 +37,7 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point>
     cv::Mat temp;
     thresholdImage.copyTo(temp);
 
-    vector< vector<cv::Point> > contours;
+    vector< vector<cv::Point> > contours;  // контуры оьнаруженных объектов
     vector<cv::Vec4i> hierarchy;
 
     cv::findContours(temp, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
@@ -117,4 +118,3 @@ Frame::~Frame()
 {
 
 }
-

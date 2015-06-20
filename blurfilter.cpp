@@ -1,5 +1,6 @@
 #include "blurfilter.h"
 
+
 Frame BlurFilter::apply(Frame originalFrame)
 {
     cv::Mat blurMat;
@@ -54,4 +55,3 @@ BlurFilter::~BlurFilter()
 {
 
 }
-

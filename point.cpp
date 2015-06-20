@@ -1,6 +1,7 @@
 #include "point.h"
 #include "qdebug.h"
 
+
 cv::Point Point::getCvPoint()
 {
     return cvPoint;
@@ -30,4 +31,3 @@ Point::~Point()
 {
 
 }
-

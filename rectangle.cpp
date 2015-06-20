@@ -25,4 +25,3 @@ Rectangle::~Rectangle()
 {
 
 }
-

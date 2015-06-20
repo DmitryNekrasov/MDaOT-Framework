@@ -1,5 +1,6 @@
 #include "video.h"
 
+
 Frame Video::nextFrame()
 {
     cv::Mat next;

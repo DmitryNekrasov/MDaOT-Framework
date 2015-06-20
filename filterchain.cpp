@@ -1,5 +1,6 @@
 #include "filterchain.h"
 
+
 void FilterChain::add(Filter *filter)
 {
     filters.push_back(filter);
@@ -77,4 +78,3 @@ FilterChain::~FilterChain()
 {
 
 }
-

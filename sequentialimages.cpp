@@ -75,4 +75,3 @@ SequentialImages::SequentialImages(MovenmentHandler *handler)
 SequentialImages::~SequentialImages() {
 
 }
-

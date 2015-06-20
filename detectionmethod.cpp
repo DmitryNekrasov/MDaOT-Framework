@@ -2,11 +2,6 @@
 #include "QDebug"
 
 
-DetectionMethod::~DetectionMethod()
-{
-
-}
-
 void DetectionMethod::performOnMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
 {
     movenmentHandler->onMove(frame, rectangles, mask);
@@ -25,4 +20,9 @@ FilterChain *DetectionMethod::getFilterChain()
 void DetectionMethod::setFilterChain(FilterChain chain)
 {
     filterChain = chain;
+}
+
+DetectionMethod::~DetectionMethod()
+{
+
 }

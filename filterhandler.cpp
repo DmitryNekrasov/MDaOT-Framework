@@ -11,4 +11,3 @@ FilterHandler::~FilterHandler()
 {
 
 }
-

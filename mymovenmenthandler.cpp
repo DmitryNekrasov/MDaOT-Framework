@@ -4,6 +4,7 @@
 #include "QImage"
 #include "mainwindow.h"
 
+
 int cnt = 0;
 void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
 {
@@ -49,4 +50,3 @@ MyMovenmentHandler::~MyMovenmentHandler()
 {
 
 }
-

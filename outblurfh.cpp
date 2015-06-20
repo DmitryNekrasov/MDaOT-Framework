@@ -15,4 +15,3 @@ OutBlurFH::~OutBlurFH()
 {
 
 }
-

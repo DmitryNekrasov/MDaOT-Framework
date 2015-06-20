@@ -30,4 +30,3 @@ Detector::~Detector()
 {
 
 }
-

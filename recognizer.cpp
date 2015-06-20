@@ -1,5 +1,6 @@
 #include "recognizer.h"
 
+
 void Recognizer::setRecognitionMethod(RecognitionMethod *recognitionMethod)
 {
     this->recognitionMethod = recognitionMethod;
@@ -19,4 +20,3 @@ Recognizer::~Recognizer()
 {
 
 }
-

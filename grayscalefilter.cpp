@@ -1,6 +1,7 @@
 #include "grayscalefilter.h"
 #include "QDebug"
 
+
 Frame GrayscaleFilter::apply(Frame originalFrame)
 {
     cv::Mat grayMat;
@@ -32,4 +33,3 @@ GrayscaleFilter::~GrayscaleFilter()
 {
 
 }
-

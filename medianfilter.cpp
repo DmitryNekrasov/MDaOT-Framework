@@ -1,5 +1,6 @@
 #include "medianfilter.h"
 
+
 Frame MedianFilter::apply(Frame originalFrame)
 {
     cv::Mat medianMat;
@@ -42,4 +43,3 @@ MedianFilter::~MedianFilter()
 {
 
 }
-

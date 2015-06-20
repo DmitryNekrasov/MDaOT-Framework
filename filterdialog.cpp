@@ -2,6 +2,7 @@
 #include "ui_filterdialog.h"
 #include "QPainter"
 
+
 FilterDialog::FilterDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FilterDialog)

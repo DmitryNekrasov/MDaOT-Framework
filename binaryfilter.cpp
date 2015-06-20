@@ -1,6 +1,7 @@
 #include "binaryfilter.h"
 #include "QDebug"
 
+
 Frame BinaryFilter::apply(Frame originalFrame)
 {
     cv::Mat thresholdMat;

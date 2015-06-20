@@ -1,5 +1,6 @@
 #include "mybackgroundsubtraction.h"
 
+
 void MyBackgroundSubtraction::detect(Video video)
 {
     Frame frame = video.nextFrame();
@@ -56,4 +57,3 @@ MyBackgroundSubtraction::~MyBackgroundSubtraction()
 {
 
 }
-
