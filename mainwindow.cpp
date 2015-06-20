@@ -216,3 +216,9 @@ void MainWindow::on_siRadio_clicked()
         refreshList();
     }
 }
+
+void MainWindow::on_clearChainButton_clicked()
+{
+    detector.getDetectionMethod()->getFilterChain()->clear();
+    refreshList();
+}

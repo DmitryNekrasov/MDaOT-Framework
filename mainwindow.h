@@ -69,6 +69,7 @@ private slots:
     void on_pixelCheckBox_clicked();
     void on_bsRadio_clicked();
     void on_siRadio_clicked();
+    void on_clearChainButton_clicked();
 };
 
 
