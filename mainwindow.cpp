@@ -202,11 +202,6 @@ void MainWindow::writeChainInFile()
     file.close();
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-
-}
-
 void MainWindow::on_startPauseButton_clicked()
 {
     if (timer->isActive()) {
