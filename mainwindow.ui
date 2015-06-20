@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1098</width>
-    <height>500</height>
+    <width>1103</width>
+    <height>623</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,8 +32,8 @@
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
-      <x>982</x>
-      <y>434</y>
+      <x>986</x>
+      <y>555</y>
       <width>110</width>
       <height>32</height>
      </rect>
@@ -54,7 +54,7 @@
    <widget class="QGroupBox" name="dmGroupBox">
     <property name="geometry">
      <rect>
-      <x>865</x>
+      <x>871</x>
       <y>0</y>
       <width>221</width>
       <height>81</height>
@@ -93,7 +93,7 @@
     <widget class="QPushButton" name="startPauseButton">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>159</x>
        <y>25</y>
        <width>61</width>
        <height>51</height>
@@ -107,7 +107,7 @@
    <widget class="QGroupBox" name="allocGroupBox">
     <property name="geometry">
      <rect>
-      <x>865</x>
+      <x>871</x>
       <y>90</y>
       <width>221</width>
       <height>61</height>
@@ -148,10 +148,10 @@
    <widget class="QGroupBox" name="chainGroupBox">
     <property name="geometry">
      <rect>
-      <x>865</x>
+      <x>871</x>
       <y>160</y>
       <width>221</width>
-      <height>251</height>
+      <height>301</height>
      </rect>
     </property>
     <property name="title">
@@ -163,7 +163,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>94</y>
        <width>31</width>
        <height>61</height>
@@ -179,7 +179,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>24</y>
        <width>31</width>
        <height>61</height>
@@ -189,49 +189,140 @@
       <string>⬆</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
-     <property name="geometry">
-      <rect>
-       <x>12</x>
-       <y>169</y>
-       <width>201</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QComboBox" name="selectFilterCombo"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="addFilterButton">
-          <property name="text">
-           <string>Добавить</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="deleteFilterButton">
-        <property name="text">
-         <string>Удалить выбранный</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QListWidget" name="listName">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>24</y>
-       <width>160</width>
+       <width>151</width>
        <height>131</height>
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="clearChainButton">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>231</y>
+       <width>211</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Очистить цепочку</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteFilterButton">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>197</y>
+       <width>211</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Удалить выбранный фильтр</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addChainButton">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>265</y>
+       <width>211</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Добавить цепочку в пресет</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addFilterButton">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>163</y>
+       <width>101</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Добавить</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="selectFilterCombo">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>165</y>
+       <width>101</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="presetGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>871</x>
+      <y>466</y>
+      <width>221</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Пресет цепочек фильтров</string>
+    </property>
+    <widget class="QComboBox" name="chainCombo">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>22</y>
+       <width>201</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="applyChainButton">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>49</y>
+       <width>131</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Применить</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteChainButton">
+     <property name="geometry">
+      <rect>
+       <x>132</x>
+       <y>49</y>
+       <width>81</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Удалить</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>0</y>
+      <width>20</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
    </widget>
    <zorder>listName</zorder>
    <zorder>filterChainLabel</zorder>
@@ -248,13 +339,15 @@
    <zorder>dmGroupBox</zorder>
    <zorder>allocGroupBox</zorder>
    <zorder>chainGroupBox</zorder>
+   <zorder>presetGroupBox</zorder>
+   <zorder>line</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1098</width>
+     <width>1103</width>
      <height>22</height>
     </rect>
    </property>
