@@ -72,6 +72,12 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
         lastCountLeft = newCountLeft;
         lastCountRight = newCountRight;
+
+        //выводим скорость объектов
+        for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
+            Rectangle rect = *it;
+            frame.putText("qqq", rect.getCenterPoint());
+        }
     }
 
     // выводим контуры движущихся объектов

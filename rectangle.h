@@ -6,6 +6,8 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/opencv.hpp>
 
+#include "point.h"
+
 
 /*!
  * Прямоугольник.
@@ -58,6 +60,13 @@ public:
      * \return Y-координата левого нижнего угла прямоугольника
      */
     int getLeftBottomCornerY();
+
+    /*!
+     * Возвращает центральную точку прямоугольника
+     * \brief getCenterPoint
+     * \return Центральная точка прямоугольника
+     */
+    Point getCenterPoint();
 
     /*!
      * Конструктор

@@ -293,6 +293,10 @@ private slots:
      */
     void on_addChainButton_clicked();
 
+    /*!
+     * Обнуляет количество автомобилей по полосам
+     * \brief on_setNullButton_clicked
+     */
     void on_setNullButton_clicked();
 };
 

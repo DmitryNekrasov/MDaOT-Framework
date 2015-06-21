@@ -113,6 +113,15 @@ public:
     QImage filterToQImage();
 
     /*!
+     * Выводит текст на кадр
+     * \brief putText
+     * \param text Текст
+     * \param x Координата x точки начала текста
+     * \param y Координата y точки начала текста
+     */
+    void putText(string text, Point point);
+
+    /*!
      * Конструктор
      * \brief Frame
      * \param mat Объект cv::Mat

@@ -114,6 +114,11 @@ QImage Frame::filterToQImage()
     return qimg;
 }
 
+void Frame::putText(string text, Point point)
+{
+    cv::putText(mat, text, point.getCvPoint(), 1, 1, cv::Scalar(0, 255, 0), 2);
+}
+
 Frame::Frame(cv::Mat mat)
 {
     this->mat = mat;

@@ -406,4 +406,6 @@ void MainWindow::on_setNullButton_clicked()
 {
     setCountLeft(0);
     setCountRight(0);
+    ui->countLeftLabel->setText("0");
+    ui->countRightLabel->setText("0");
 }
