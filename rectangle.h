@@ -48,9 +48,16 @@ public:
      *   |
      *   v Y
      * \brief getLeftBottomCornerX
-     * \return
+     * \return X-координата левого нижнего угла прямоугольника
      */
     int getLeftBottomCornerX();
+
+    /*!
+     * Возвращает y-координату левого нижнего угла прямоугольника
+     * \brief getLeftBottomCornerY
+     * \return Y-координата левого нижнего угла прямоугольника
+     */
+    int getLeftBottomCornerY();
 
     /*!
      * Конструктор

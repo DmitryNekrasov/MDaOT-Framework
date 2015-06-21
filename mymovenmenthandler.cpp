@@ -4,11 +4,15 @@
 #include "QImage"
 #include "mainwindow.h"
 
+
+const int okArea = 10000;
+const int marking = 230;  // подсчитана аналитически с помощью линейки и отношения дробей
+
 vector<Rectangle> lastRectangles, newRectangles;
 int cnt = 0;
 bool isFirst = true;
-const int okArea = 10000;
-int lastCount = 0, allCount = 0;
+int lastCountLeft = 0, lastCountRight = 0;
+int allCountLeft = 0, allCountRight;
 
 void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
 {
@@ -41,20 +45,31 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
             }
         }
     } else {
-        int newCount = 0;
+        int newCountLeft = 0;
+        int newCountRight = 0;
         for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
             Rectangle rect = *it;
-//            qDebug() << rect.getLeftBottomCornerX();
-            if (abs(rect.getLeftBottomCornerX() - frame.getHeight()) <= 5) {
-                newCount++;
+            if (abs(rect.getLeftBottomCornerX() - frame.getHeight()) <= 1) {
+                if (rect.getLeftBottomCornerY() < marking) {
+                    newCountLeft++;
+                } else {
+                    newCountRight++;
+                }
             }
         }
 
-        if (newCount > lastCount)
-            allCount += newCount - lastCount;
-        lastCount = newCount;
+        if (newCountLeft > lastCountLeft) {
+            allCountLeft += newCountLeft - lastCountLeft;
+        }
 
-        qDebug() << allCount;
+        if (newCountRight > lastCountRight) {
+            allCountRight += newCountRight - lastCountRight;
+        }
+
+        lastCountLeft = newCountLeft;
+        lastCountRight = newCountRight;
+
+        qDebug() << allCountLeft << allCountRight;
     }
 
     // выводим контуры движущихся объектов
