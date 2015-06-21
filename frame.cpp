@@ -20,6 +20,16 @@ cv::Mat Frame::getCvMat()
     return mat;
 }
 
+int Frame::getWidth()
+{
+    return mat.cols;
+}
+
+int Frame::getHeight()
+{
+    return mat.rows;
+}
+
 Frame Frame::difference(Frame frame1, Frame frame2)
 {
     cv::Mat mat1 = frame1.getCvMat();

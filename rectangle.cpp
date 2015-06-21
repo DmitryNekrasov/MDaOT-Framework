@@ -11,6 +11,11 @@ int Rectangle::getArea()
     return myRect.area();
 }
 
+int Rectangle::getLeftBottomCornerX()
+{
+    return myRect.y + myRect.height;
+}
+
 Rectangle::Rectangle(int x, int y, int width, int height)
 {
     myRect = cv::Rect(x, y, width, height);

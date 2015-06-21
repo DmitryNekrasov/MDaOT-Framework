@@ -22,17 +22,17 @@ void MyBackgroundSubtraction::init(Video video)
 {
     qDebug() << "Detection Background Subtraction method";
 
+    // инициализация фона
+    Frame frame = video.nextFrame();
+    grayscaleFilter = new GrayscaleFilter();
+    background = grayscaleFilter->apply(frame);
+
     if (filterChain.getCount() == 0) {
 
-        // инициализация фона
-        Frame frame = video.nextFrame();
-        grayscaleFilter = new GrayscaleFilter();
-        background = grayscaleFilter->apply(frame);
-
         // фильтры
-        Filter *binary = new BinaryFilter(20);
-        Filter *median = new MedianFilter(5);
-        Filter *blur = new BlurFilter(5, 5);
+        Filter *binary = new BinaryFilter(25);
+        Filter *median = new MedianFilter(7);
+        Filter *blur = new BlurFilter(5, 10);
         Filter *finalBinary = new BinaryFilter(15);
 
         // добавляем фильтры в цепочку

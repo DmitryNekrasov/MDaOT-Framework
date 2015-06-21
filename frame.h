@@ -46,11 +46,25 @@ public:
     static void destroyWindow(string windowName);
 
     /*!
-     * Получает cv::Mat из кадра
+     * Возвращает cv::Mat из кадра
      * \brief getCvMat
-     * \return
+     * \return cv::Mat
      */
     cv::Mat getCvMat();
+
+    /*!
+     * Возвращает ширину кадра
+     * \brief getWidth
+     * \return Ширина кадра
+     */
+    int getWidth();
+
+    /*!
+     * Возвращает высоту кадра
+     * \brief getHeight
+     * \return Высота кадра
+     */
+    int getHeight();
 
     /*!
      * Находит абсолютную попиксельную разницу между кадрами
