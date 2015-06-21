@@ -5,14 +5,25 @@
 #include "mainwindow.h"
 
 
-const int okArea = 10000;
+const int okArea = 10000;  // максимально допустимая площадь ограничивающего прямоугольника обнаруженного объекта
 const int marking = 230;  // подсчитана аналитически с помощью линейки и отношения дробей
+const int maxDistance = 5;  // максимально допустимое расстояние между одним объектом на разных кадрах
+const double heightLineMarkMeter = 0.2;  // ширина сплошной линии разметки в метрах
+const int heightLineMarkPixel = 10; // ширина сплошной линии разметки в пикселях
+const double msToKmh = 3.6;  // коэффициент для перевода метров в секунду в километры в час
+const double timeFrame = 0.03;  // время между кадрами в секундах
+const int factor = 5;
 
 vector<Rectangle> lastRectangles, newRectangles;
 int cnt = 0;
 bool isFirst = true;
 int lastCountLeft = 0, lastCountRight = 0;
 int allCountLeft = 0, allCountRight;
+
+int getVelocity(int n) {
+    double x = (((double) n * heightLineMarkMeter) / heightLineMarkPixel) / timeFrame * msToKmh;
+    return x * factor;
+}
 
 void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
 {
@@ -73,10 +84,25 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
         lastCountLeft = newCountLeft;
         lastCountRight = newCountRight;
 
-        //выводим скорость объектов
+        //считаем скорость объектов
+        for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
+            Rectangle rect1 = *it;
+            int minDistance = maxDistance;
+            for (vector<Rectangle>::iterator lit = lastRectangles.begin(); lit != lastRectangles.end(); lit++) {
+                Rectangle rect2 = *lit;
+                int tmpDistance = Point::getDistance(rect1.getCenterPoint(), rect2.getCenterPoint());
+                minDistance = min(minDistance, tmpDistance);
+            }
+            if (minDistance < maxDistance) {
+                frame.putText(to_string(getVelocity(max(minDistance, 1))) + " km/h", rect1.getCenterPoint());
+            }
+        }
+
+        // переписываем lastRectangles
+        lastRectangles.clear();
         for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
             Rectangle rect = *it;
-            frame.putText("qqq", rect.getCenterPoint());
+            lastRectangles.push_back(rect);
         }
     }
 

@@ -116,8 +116,7 @@ public:
      * Выводит текст на кадр
      * \brief putText
      * \param text Текст
-     * \param x Координата x точки начала текста
-     * \param y Координата y точки начала текста
+     * \param point Точка - начало текста
      */
     void putText(string text, Point point);
 

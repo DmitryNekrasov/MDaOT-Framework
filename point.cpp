@@ -17,6 +17,11 @@ int Point::getY()
     return cvPoint.y;
 }
 
+int Point::getDistance(Point p1, Point p2)
+{
+    return abs(p1.getY() - p2.getY());
+}
+
 Point::Point()
 {
 

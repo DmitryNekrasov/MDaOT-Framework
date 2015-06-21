@@ -45,6 +45,15 @@ public:
     int getY();
 
     /*!
+     * Возвращает расстояние по y между двумя точками
+     * \brief getDistance
+     * \param p1 Первая точка
+     * \param p2 Вторая точка
+     * \return Расстояние по y между двумя точками
+     */
+    static int getDistance(Point p1, Point p2);
+
+    /*!
      * Конструктор по умолчанию
      * \brief Point
      */
