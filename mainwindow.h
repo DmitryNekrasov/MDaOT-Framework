@@ -162,7 +162,9 @@ signals:
 private slots:
 
     /*!
-     * Запускает детектор на выполнение
+     * Запускает детектор на выполнение.
+     * Изменяет лейблы с количеством автомобилей по полосам.
+     * Работает по таймеру.
      * \brief sl
      */
     void sl();
@@ -291,6 +293,7 @@ private slots:
      */
     void on_addChainButton_clicked();
 
+    void on_setNullButton_clicked();
 };
 
 

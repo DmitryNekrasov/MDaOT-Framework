@@ -401,3 +401,9 @@ void MainWindow::on_addChainButton_clicked()
         refreshPresetList();
     }
 }
+
+void MainWindow::on_setNullButton_clicked()
+{
+    setCountLeft(0);
+    setCountRight(0);
+}

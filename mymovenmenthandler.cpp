@@ -59,13 +59,15 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
         }
 
         if (newCountLeft > lastCountLeft) {
-            allCountLeft += newCountLeft - lastCountLeft;
-            window->setCountLeft(allCountLeft);
+            int diff = newCountLeft - lastCountLeft;
+            allCountLeft += diff;
+            window->setCountLeft(window->getCountLeft() + diff);
         }
 
         if (newCountRight > lastCountRight) {
-            allCountRight += newCountRight - lastCountRight;
-            window->setCountRight(allCountRight);
+            int diff = newCountRight - lastCountRight;
+            allCountRight += diff;
+            window->setCountRight(window->getCountRight() + diff);
         }
 
         lastCountLeft = newCountLeft;
