@@ -67,6 +67,13 @@ public:
     bool isOutRect();
 
     /*!
+     * Проверяет, нужно ли отображать скорость движущихся объектов
+     * \brief isOutVelocity
+     * \return True, если нужно отображать скорость движущихся объектов, иначе false
+     */
+    bool isOutVelocity();
+
+    /*!
      * Возвращает количество автомобилей в левой полосе за всё время
      * \brief getCountLeft
      * \return Количество авто в левой полосе
@@ -124,6 +131,7 @@ private:
     vector<FilterChain> preset;
     bool outRect = false;
     bool outMask = false;
+    bool outVelocity = false;
     int countLeft = 0;
     int countRight = 0;
 
@@ -298,6 +306,13 @@ private slots:
      * \brief on_setNullButton_clicked
      */
     void on_setNullButton_clicked();
+
+    /*!
+     * При нажатии на showVelocityCheckBox выводит скорости обнаруженных объектов, если
+     * showVelocityCheckBox is checked, иначе прекращает выводить скорости
+     * \brief on_showVelocityCheckBox_clicked
+     */
+    void on_showVelocityCheckBox_clicked();
 };
 
 

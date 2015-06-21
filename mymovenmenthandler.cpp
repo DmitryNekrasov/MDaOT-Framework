@@ -93,8 +93,8 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
                 int tmpDistance = Point::getDistance(rect1.getCenterPoint(), rect2.getCenterPoint());
                 minDistance = min(minDistance, tmpDistance);
             }
-            if (minDistance < maxDistance) {
-                frame.putText(to_string(getVelocity(max(minDistance, 1))) + " km/h", rect1.getCenterPoint());
+            if (minDistance < maxDistance && minDistance != 0 && window->isOutVelocity()) {
+                frame.putText(to_string(getVelocity(minDistance)) + " km/h", rect1.getCenterPoint());
             }
         }
 

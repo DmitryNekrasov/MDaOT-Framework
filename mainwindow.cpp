@@ -72,6 +72,11 @@ bool MainWindow::isOutRect()
     return outRect;
 }
 
+bool MainWindow::isOutVelocity()
+{
+    return outVelocity;
+}
+
 int MainWindow::getCountLeft()
 {
     return countLeft;
@@ -408,4 +413,13 @@ void MainWindow::on_setNullButton_clicked()
     setCountRight(0);
     ui->countLeftLabel->setText("0");
     ui->countRightLabel->setText("0");
+}
+
+void MainWindow::on_showVelocityCheckBox_clicked()
+{
+    if (ui->showVelocityCheckBox->isChecked()) {
+        outVelocity = true;
+    } else {
+        outVelocity = false;
+    }
 }
