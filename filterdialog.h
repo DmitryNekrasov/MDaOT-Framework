@@ -37,15 +37,6 @@ class FilterDialog : public QDialog
 public:
 
     /*!
-     * Конструктор
-     * \brief FilterDialog
-     * \param parent Родительский виджет
-     */
-    explicit FilterDialog(QWidget *parent = 0);
-
-    ~FilterDialog();
-
-    /*!
      * Изменяет фильтр, редактируемый на данной форме
      * \brief setFilter
      * \param filter Фильтр
@@ -65,6 +56,15 @@ public:
      * \param img Изображение
      */
     void setQimg(QImage *img);
+
+    /*!
+     * Конструктор
+     * \brief FilterDialog
+     * \param parent Родительский виджет
+     */
+    explicit FilterDialog(QWidget *parent = 0);
+
+    ~FilterDialog();
 
 protected:
 

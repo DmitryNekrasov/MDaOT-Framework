@@ -60,16 +60,16 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
         if (newCountLeft > lastCountLeft) {
             allCountLeft += newCountLeft - lastCountLeft;
+            window->setCountLeft(allCountLeft);
         }
 
         if (newCountRight > lastCountRight) {
             allCountRight += newCountRight - lastCountRight;
+            window->setCountRight(allCountRight);
         }
 
         lastCountLeft = newCountLeft;
         lastCountRight = newCountRight;
-
-        qDebug() << allCountLeft << allCountRight;
     }
 
     // выводим контуры движущихся объектов

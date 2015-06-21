@@ -63,7 +63,7 @@
     <property name="title">
      <string>Метод обнаружения</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>9</x>
@@ -116,7 +116,7 @@
     <property name="title">
      <string>Выделение объектов</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>9</x>
@@ -142,8 +142,6 @@
       </item>
      </layout>
     </widget>
-    <zorder></zorder>
-    <zorder></zorder>
    </widget>
    <widget class="QGroupBox" name="chainGroupBox">
     <property name="geometry">
@@ -324,23 +322,67 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <zorder>listName</zorder>
-   <zorder>filterChainLabel</zorder>
-   <zorder>closeButton</zorder>
-   <zorder></zorder>
-   <zorder></zorder>
-   <zorder>selectFilterCombo</zorder>
-   <zorder>addFilterButton</zorder>
-   <zorder>deleteFilterButton</zorder>
-   <zorder>bsRadio</zorder>
-   <zorder>siRadio</zorder>
-   <zorder>recCheckBox</zorder>
-   <zorder>pixelCheckBox</zorder>
-   <zorder>dmGroupBox</zorder>
-   <zorder>allocGroupBox</zorder>
-   <zorder>chainGroupBox</zorder>
-   <zorder>presetGroupBox</zorder>
-   <zorder>line</zorder>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>463</y>
+      <width>861</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>480</y>
+      <width>257</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="leftLabel">
+         <property name="text">
+          <string>Количество машин в левой полосе:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="countLeftLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="rightLabel">
+         <property name="text">
+          <string>Количество машин в правой полосе:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="countRightLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

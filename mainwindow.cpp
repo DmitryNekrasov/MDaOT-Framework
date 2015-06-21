@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::sl()
 {
     detector.execute(video);
+    ui->countLeftLabel->setText(QString::number(countLeft));
+    ui->countRightLabel->setText(QString::number(countRight));
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +70,26 @@ bool MainWindow::isOutMask()
 bool MainWindow::isOutRect()
 {
     return outRect;
+}
+
+int MainWindow::getCountLeft()
+{
+    return countLeft;
+}
+
+void MainWindow::setCountLeft(int count)
+{
+    countLeft = count;
+}
+
+int MainWindow::getCountRight()
+{
+    return countRight;
+}
+
+void MainWindow::setCountRight(int count)
+{
+    countRight = count;
 }
 
 void MainWindow::paintEvent(QPaintEvent *)

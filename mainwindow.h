@@ -46,15 +46,6 @@ class MainWindow : public QMainWindow
 public:
 
     /*!
-     * Конструктор
-     * \brief MainWindow
-     * \param parent Родительский виджет
-     */
-    explicit MainWindow(QWidget *parent = 0);
-
-    ~MainWindow();
-
-    /*!
      * Изменяет изображение, выводимое на форму
      * \brief setQimg
      * \param img Изображение
@@ -75,6 +66,43 @@ public:
      */
     bool isOutRect();
 
+    /*!
+     * Возвращает количество автомобилей в левой полосе за всё время
+     * \brief getCountLeft
+     * \return Количество авто в левой полосе
+     */
+    int getCountLeft();
+
+    /*!
+     * Изменяет количество автомобилей в левой полосе
+     * \brief setCountLeft
+     * \param count Новое количество авто в левой полосе
+     */
+    void setCountLeft(int count);
+
+    /*!
+     * Возвращает количество автомобилей в правой полосе за всё время
+     * \brief getCountRight
+     * \return Количество авто в правой полосе
+     */
+    int getCountRight();
+
+    /*!
+     * Изменяет количество автомобилей в правой полосе
+     * \brief setCountRight
+     * \param count Новое количество авто в правой полосе
+     */
+    void setCountRight(int count);
+
+    /*!
+     * Конструктор
+     * \brief MainWindow
+     * \param parent Родительский виджет
+     */
+    explicit MainWindow(QWidget *parent = 0);
+
+    ~MainWindow();
+
 protected:
 
     /*!
@@ -92,10 +120,12 @@ private:
     MovenmentHandler *myMH;
     DetectionMethod *si, *bs;
     QTimer *timer;
-    QString pathToPreset = "/Users/ScanNorOne/Desktop/preset.fchain";
+    const QString pathToPreset = "/Users/ScanNorOne/Desktop/preset.fchain";
     vector<FilterChain> preset;
     bool outRect = false;
     bool outMask = false;
+    int countLeft = 0;
+    int countRight = 0;
 
     /*!
      * Обновляет содержимое списка filterNames, который содержит имена фильтров
