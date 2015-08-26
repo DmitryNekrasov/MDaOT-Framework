@@ -69,7 +69,7 @@ public:
      * \brief Video
      * \param filePath Путь до видеофайла
      */
-    Video(string filePath);
+    Video(std::string filePath);
 
     ~Video();
 };

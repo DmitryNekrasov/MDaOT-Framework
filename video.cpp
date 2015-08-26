@@ -36,7 +36,7 @@ Video::Video(int device)
     isFileOpen = false;
 }
 
-Video::Video(string filePath)
+Video::Video(std::string filePath)
 {
     capture = cv::VideoCapture(filePath);
     isFileOpen = true;

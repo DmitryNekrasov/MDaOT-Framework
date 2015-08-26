@@ -25,7 +25,7 @@ int getVelocity(int n) {
     return x * factor;
 }
 
-void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask)
+void MyMovenmentHandler::onMove(Frame frame, std::vector<Rectangle> *rectangles, std::vector<Point> *mask)
 {
     // здесь нужно писать код обработки обнаруженного движущегося объекта
 
@@ -33,9 +33,9 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
     // обводим обнаруженные объекты прямоугольниками
     bool oneMore = false;
-    for (vector<Rectangle>::iterator it = rectangles->begin(); it != rectangles->end(); it++) {
+    for (std::vector<Rectangle>::iterator it = rectangles->begin(); it != rectangles->end(); it++) {
         Rectangle rect = *it;
-        if (rect.getArea() > okArea) {
+        if (rect.getArea() > okArea) {  // если площадь прямоугольника больше пороговой
             if (window->isOutRect()) {
                 frame.drawRectangle(rect);
             }
@@ -49,7 +49,7 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
     if (isFirst && oneMore) {  // сформировали первый раз lastRectangles
         isFirst = false;
-        for (vector<Rectangle>::iterator it = rectangles->begin(); it != rectangles->end(); it++) {
+        for (std::vector<Rectangle>::iterator it = rectangles->begin(); it != rectangles->end(); it++) {
             Rectangle rect = *it;
             if (rect.getArea() > okArea) {
                 lastRectangles.push_back(rect);
@@ -58,10 +58,10 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
     } else {
         int newCountLeft = 0;
         int newCountRight = 0;
-        for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
+        for (std::vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
             Rectangle rect = *it;
-            if (abs(rect.getLeftBottomCornerX() - frame.getHeight()) <= 1) {
-                if (rect.getLeftBottomCornerY() < marking) {
+            if (abs(rect.getLeftBottomCornerX() - frame.getHeight()) <= 1) {  // проверяем, что пересекли нижнюю границу кадра
+                if (rect.getLeftBottomCornerY() < marking) {  // проверяем, с какой стороны движение
                     newCountLeft++;
                 } else {
                     newCountRight++;
@@ -69,13 +69,13 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
             }
         }
 
-        if (newCountLeft > lastCountLeft) {
+        if (newCountLeft > lastCountLeft) {  // обновляем кол-во по левой стороне
             int diff = newCountLeft - lastCountLeft;
             allCountLeft += diff;
             window->setCountLeft(window->getCountLeft() + diff);
         }
 
-        if (newCountRight > lastCountRight) {
+        if (newCountRight > lastCountRight) {  // обновляем кол-во по правой стороне
             int diff = newCountRight - lastCountRight;
             allCountRight += diff;
             window->setCountRight(window->getCountRight() + diff);
@@ -85,14 +85,16 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
         lastCountRight = newCountRight;
 
         //считаем скорость объектов
-        for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
+        for (std::vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
             Rectangle rect1 = *it;
             int minDistance = maxDistance;
-            for (vector<Rectangle>::iterator lit = lastRectangles.begin(); lit != lastRectangles.end(); lit++) {
+            for (std::vector<Rectangle>::iterator lit = lastRectangles.begin(); lit != lastRectangles.end(); lit++) {
                 Rectangle rect2 = *lit;
                 int tmpDistance = Point::getDistance(rect1.getCenterPoint(), rect2.getCenterPoint());
                 minDistance = min(minDistance, tmpDistance);
             }
+
+            // если дистанция допустима и можно выводить на форму
             if (minDistance < maxDistance && minDistance != 0 && window->isOutVelocity()) {
                 frame.putText(to_string(getVelocity(minDistance)) + " km/h", rect1.getCenterPoint());
             }
@@ -100,7 +102,7 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
         // переписываем lastRectangles
         lastRectangles.clear();
-        for (vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
+        for (std::vector<Rectangle>::iterator it = newRectangles.begin(); it != newRectangles.end(); it++) {
             Rectangle rect = *it;
             lastRectangles.push_back(rect);
         }
@@ -108,7 +110,7 @@ void MyMovenmentHandler::onMove(Frame frame, vector<Rectangle> *rectangles, vect
 
     // выводим контуры движущихся объектов
     if (window->isOutMask()) {
-        for (vector<Point>::iterator it = mask->begin(); it != mask->end(); it++) {
+        for (std::vector<Point>::iterator it = mask->begin(); it != mask->end(); it++) {
             Point point = *it;
             frame.drawPoint(point);
         }

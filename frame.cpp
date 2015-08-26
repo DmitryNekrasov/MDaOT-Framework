@@ -3,52 +3,52 @@
 #include <QImage>
 
 
-bool Frame::show(string windowFrame)
+bool Frame::show(std::string _window_name)
 {
-    cv::imshow(windowFrame, mat);
+    cv::imshow(_window_name, m_Mat);
     int keyCode = cv::waitKey(10);
     return keyCode < 0;
 }
 
-void Frame::destroyWindow(string windowName)
+void Frame::destroyWindow(std::string _window_name)
 {
-    cv::destroyWindow(windowName);
+    cv::destroyWindow(_window_name);
 }
 
 cv::Mat Frame::getCvMat()
 {
-    return mat;
+    return m_Mat;
 }
 
 int Frame::getWidth()
 {
-    return mat.cols;
+    return m_Mat.cols;
 }
 
 int Frame::getHeight()
 {
-    return mat.rows;
+    return m_Mat.rows;
 }
 
-Frame Frame::difference(Frame frame1, Frame frame2)
+Frame Frame::difference(Frame _frame1, Frame _frame2)
 {
-    cv::Mat mat1 = frame1.getCvMat();
-    cv::Mat mat2 = frame2.getCvMat();
+    cv::Mat mat1 = _frame1.getCvMat();
+    cv::Mat mat2 = _frame2.getCvMat();
     cv::Mat resultMat;
     cv::absdiff(mat1, mat2, resultMat);
     return Frame(resultMat);
 }
 
-vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point> *points)
+std::vector<Rectangle> Frame::searchForMovement(cv::Mat _thresholdImage, std::vector<Point>* _points)
 {
-    points->clear();
+    _points->clear();
 
     bool objectDetected = false;
     cv::Mat temp;
-    thresholdImage.copyTo(temp);
+    _thresholdImage.copyTo(temp);
 
-    vector< vector<cv::Point> > contours;  // контуры оьнаруженных объектов
-    vector<cv::Vec4i> hierarchy;
+    std::vector< std::vector<cv::Point> > contours;  // контуры обнаруженных объектов
+    std::vector<cv::Vec4i> hierarchy;
 
     cv::findContours(temp, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
@@ -60,21 +60,19 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point>
 
     cv::Rect objectBoundingRectangle = cv::Rect(0, 0, 0, 0);
 
-    vector<Rectangle> rectangles;
+    std::vector<Rectangle> rectangles;
 
     if (objectDetected) {
 
         // запомнить точки маски
-        for (vector< vector<cv::Point> >::iterator i = contours.begin(); i != contours.end(); i++) {
-            vector<cv::Point> pt = *i;
-            for (vector<cv::Point>::iterator j = pt.begin(); j != pt.end(); j++){
-                cv::Point cvPoint = *j;
-                Point point = Point(cvPoint);
-                points->push_back(point);
+        for (auto point_vector : contours) {
+            for (auto cv_point : point_vector) {
+                Point point(cv_point);
+                _points->push_back(point);
             }
         }
 
-        vector< vector<cv::Point> > largestContourVec;
+        std::vector< std::vector<cv::Point> > largestContourVec;
 
         for (int i = 0; i < contours.size(); i++) {
             largestContourVec.push_back(contours.at(i));
@@ -89,39 +87,39 @@ vector<Rectangle> Frame::searchForMovement(cv::Mat thresholdImage, vector<Point>
     return rectangles;
 }
 
-void Frame::drawRectangle(Rectangle rectangle)
+void Frame::drawRectangle(Rectangle _rectangle)
 {
-    cv::rectangle(mat, rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
+    cv::rectangle(m_Mat, _rectangle.getCvRect(), cv::Scalar(255, 0, 0), 3);
 }
 
-void Frame::drawPoint(Point point)
+void Frame::drawPoint(Point _point)
 {
-    cv::Rect rec = cv::Rect(point.getX(), point.getY(), 1, 1);
-    cv::rectangle(mat, rec, cv::Scalar(0, 0, 255), 3);
+    cv::Rect rec = cv::Rect(_point.getX(), _point.getY(), 1, 1);
+    cv::rectangle(m_Mat, rec, cv::Scalar(0, 0, 255), 3);
 }
 
 QImage Frame::toQImage()
 {
-    cv::cvtColor(mat, mat, CV_BGR2RGB);
-    QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
+    cv::cvtColor(m_Mat, m_Mat, CV_BGR2RGB);
+    QImage qimg((uchar*)m_Mat.data, m_Mat.cols, m_Mat.rows, m_Mat.step, QImage::Format_RGB888);
     return qimg;
 }
 
 QImage Frame::filterToQImage()
 {
-    cv::cvtColor(mat, mat, CV_GRAY2RGB);
-    QImage qimg((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
+    cv::cvtColor(m_Mat, m_Mat, CV_GRAY2RGB);
+    QImage qimg((uchar*)m_Mat.data, m_Mat.cols, m_Mat.rows, m_Mat.step, QImage::Format_RGB888);
     return qimg;
 }
 
-void Frame::putText(string text, Point point)
+void Frame::putText(std::string _text, Point _point)
 {
-    cv::putText(mat, text, point.getCvPoint(), 1, 1, cv::Scalar(0, 255, 0), 2);
+    cv::putText(m_Mat, _text, _point.getCvPoint(), 1, 1, cv::Scalar(0, 255, 0), 2);
 }
 
-Frame::Frame(cv::Mat mat)
+Frame::Frame(cv::Mat _mat)
 {
-    this->mat = mat;
+    m_Mat = _mat;
 }
 
 Frame::Frame()

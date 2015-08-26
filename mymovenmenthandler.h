@@ -21,7 +21,7 @@ public:
      * \param rectangles Прямоугольники, ограничивающие обнаруженные объекты
      * \param mask Контуры движущихся объектов
      */
-    virtual void onMove(Frame frame, vector<Rectangle> *rectangles, vector<Point> *mask);
+    virtual void onMove(Frame frame, std::vector<Rectangle> *rectangles, std::vector<Point> *mask);
 
     /*!
      * Конструктор по умолчанию
